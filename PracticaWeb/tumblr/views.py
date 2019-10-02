@@ -8,7 +8,7 @@ from django.urls import reverse
 # Create your views here.
 
 def index(request):
-    return HttpResponse("Hello, world. You're at the Forkilla home page.")
+    return render(request, 'templates/index.html')
 
 
 
