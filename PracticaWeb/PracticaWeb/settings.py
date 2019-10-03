@@ -119,3 +119,13 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.11/howto/static-files/
 
 STATIC_URL = '/static/'
+
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, "static"),
+    "static"
+]
+
+# Redirects the logged user to the specifed url (By default : homepage)
+LOGIN_REDIRECT_URL = '/'
+
+LOGIN_URL = '/accounts/login/'
