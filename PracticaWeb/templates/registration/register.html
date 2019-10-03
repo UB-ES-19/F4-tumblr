@@ -1,14 +1,17 @@
 {% extends '../templates/base.html' %}
 
-{% block title %}Create an account{% endblock %}
-
 {% block content %}
-  <h1>Create an account</h1>
-
-  <form action="" method="post">
+    <p>(Note: This is a temporary register template)</p>
+  <h2>Sign up</h2>
+  <form method="post">
     {% csrf_token %}
-    {{ form.as_p }}
-      <input type="submit" value="Create the account">
+    {% for field in form %}
+      <p>
+        {{ field.label_tag }}<br>
+        {{ field }}
+      </p>
+    {% endfor %}
+    <button class="btn-primary" type="submit">Sign up</button>
   </form>
 {% endblock %}
 
