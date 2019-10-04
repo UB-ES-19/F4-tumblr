@@ -1,5 +1,11 @@
 {% block content %}
+<p>(Note: This is a temporary home template)</p>
+{% if request.user.is_authenticated %}
+    <h4>Logged in as: {{request.user.username}}</h4>
+    <button class="btn-primary"  type="submit" onclick="location.href='{% url 'logout' %}'">Sign out</button>
+{% else %}
+    <a href="/register">Register</a>
+    <a href="/login-email">Log in</a>
 
-<a href="/register">Register</a>
-
+{% endif %}
 {% endblock %}
