@@ -1,0 +1,39 @@
+/* Those big square buttons */
+.button-block {
+    width: 300px;
+    position: relative;
+    top: 10px;
+}
+.button-block:hover {
+    text-decoration: none;
+}
+
+/* Top-left t logo */
+#t-logo {
+    width: 20px;
+    margin: 20px;
+}
+
+/* Main big logo */
+#logo {
+    width: 300px;
+    margin-bottom: 20px;
+}
+
+/* Centering and other stylings on #main children */
+#main > img {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#main > p {
+    text-align: center;
+    color: white;
+    margin-bottom: 0;
+}
+
+#main > a {
+    margin: auto;
+    margin-bottom: 10px;
+}

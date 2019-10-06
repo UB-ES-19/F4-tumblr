@@ -1,11 +1,38 @@
-{% block content %}
-<p>(Note: This is a temporary home template)</p>
-{% if request.user.is_authenticated %}
-    <h4>Logged in as: {{request.user.username}}</h4>
-    <button class="btn-primary"  type="submit" onclick="location.href='{% url 'logout' %}'">Sign out</button>
-{% else %}
-    <a href="/register">Register</a>
-    <a href="/login-email">Log in</a>
+{% load static %}
 
-{% endif %}
-{% endblock %}
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Sign up | Tumblr</title>
+        <meta charset="utf-8">
+        <!-- Bootstrap -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+        <!-- CSS -->
+        <link rel="stylesheet" href="{% static 'tumblr/css/login.css' %}">
+        <link rel="stylesheet" href="{% static 'tumblr/css/index.css' %}">
+    </head>
+    <body>
+        {% if request.user.is_authenticated %}
+            <h4>Logged in as: {{request.user.username}}</h4>
+            <a href="{% url 'logout' %}" class="btn btn-lg btn-primary btn-block btn-link" style="color: white;">Sign out</a>
+        {% else %}
+            {% block content %}
+                <div id="fullBg"></div>
+
+                <!-- Top-left t logo -->
+                <div>
+                    <a href="/"><img id="t-logo" src="{% static 'tumblr/images/t_logo.png' %}"/></a>
+                </div>
+
+                <!-- Main form in the middle of the page -->
+                <div id="main" class="container" style="position: relative; top: 250px;">
+                    <img id="logo" src="{% static 'tumblr/images/tumblr image.png' %}"/>
+                    <p>Come for what you love.</p>
+                    <p>Stay for what you discover.</p>
+                    <a href="/register" class="button-block btn btn-lg btn-primary btn-block btn-link" style="color: white;">Get Started</a>
+                    <a href="/login-email" class="button-block btn btn-lg btn-block btn-link" style="background-color: white; color: black;">Log In</a>
+                </div>
+            {% endblock %}
+        {% endif %}
+    </body>
+</html>
