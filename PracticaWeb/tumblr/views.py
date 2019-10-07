@@ -50,5 +50,6 @@ def login_mail(request):
             user = User.objects.filter(email=search_email)
             # Aconseguir el username del mail
             # provar login amb username i contrasenya
+            # Reenviar a index amb el login fet
     else:
         return HttpResponseRedirect(reverse("login"))
