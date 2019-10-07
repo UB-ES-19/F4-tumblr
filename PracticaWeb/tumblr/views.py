@@ -34,7 +34,7 @@ def check_email(request):
     if request.method == 'POST':
         search_email = request.POST.get('email', None)
         try:
-            User.objects.get(email=search_email)
+            User.objects.filter(email=search_email)
             return HttpResponseRedirect(reverse("login"))
         except User.DoesNotExist:
             return HttpResponse("This email doesn't have a Tumblr account.")
