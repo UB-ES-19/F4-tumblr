@@ -33,10 +33,22 @@ def register(request):
 def check_email(request):
     if request.method == 'POST':
         search_email = request.POST.get('email', None)
-        try:
-            User.objects.filter(email=search_email)
-            return HttpResponseRedirect(reverse("login"))
-        except User.DoesNotExist:
+        # No troba usuaris, cal canviar el model de dades
+        if len(User.objects.filter(email=search_email)):
+            request.method = 'GET'
+            return login_mail(request)
+        else:
             return HttpResponse("This email doesn't have a Tumblr account.")
     else:
         return render(request, "registration/login-email.html")
+
+
+def login_mail(request):
+    if request.method == 'POST':
+        search_email = request.POST.get('email', None)
+        if len(User.objects.filter(email=search_email)):
+            user = User.objects.filter(email=search_email)
+            # Aconseguir el username del mail
+            # provar login amb username i contrasenya
+    else:
+        return HttpResponseRedirect(reverse("login"))
