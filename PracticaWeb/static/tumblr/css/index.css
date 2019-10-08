@@ -96,3 +96,14 @@
     margin-bottom: 15px;
     text-align: center;
 }
+
+
+/* Magic CSS3 scroll snapping effect */
+
+main.wrapper {
+  scroll-snap-type: y mandatory;
+}
+
+main.wrapper > section {
+  scroll-snap-align: start;
+}
