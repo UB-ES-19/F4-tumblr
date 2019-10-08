@@ -17,21 +17,37 @@
             <a href="{% url 'logout' %}" class="btn btn-lg btn-primary btn-block btn-link" style="color: white;">Sign out</a>
         {% else %}
             {% block content %}
-                <div id="fullBg"></div>
+            <main class="wrapper">
+                <section class="section parallax bg1">
 
-                <!-- Top-left t logo -->
-                <div>
-                    <a href="/"><img id="t-logo" src="{% static 'tumblr/images/t_logo.png' %}"/></a>
-                </div>
+	                <!-- Top-left t logo -->
+	                <div>
+	                    <a href="/"><img id="t-logo" src="{% static 'tumblr/images/t_logo.png' %}"/></a>
+	                </div>
 
-                <!-- Main form in the middle of the page -->
-                <div id="main" class="container" style="position: relative; top: 250px;">
-                    <img id="logo" src="{% static 'tumblr/images/tumblr image.png' %}"/>
-                    <p>Come for what you love.</p>
-                    <p>Stay for what you discover.</p>
-                    <a href="/register" class="button-block btn btn-lg btn-primary btn-block btn-link" style="color: white;">Get Started</a>
-                    <a href="/login-email" class="button-block btn btn-lg btn-block btn-link" style="background-color: white; color: black;">Log In</a>
-                </div>
+	                <!-- Main form in the middle of the page -->
+	                <div id="main" class="container" style="position: relative; top: 250px;">
+	                    <img id="logo" src="{% static 'tumblr/images/tumblr image.png' %}"/>
+	                    <p>Come for what you love.</p>
+	                    <p>Stay for what you discover.</p>
+	                    <a href="/register" class="button-block btn btn-lg btn-primary btn-block btn-link" style="color: white;">Get Started</a>
+	                    <a href="/login-email" class="button-block btn btn-lg btn-block btn-link" style="background-color: white; color: black;">Log In</a>
+
+	                </div>
+            </section>
+
+				<section class="section parallax bg2" style="background-color: #00d011;">
+	                <div id="main" class="container" style="position: relative; top: 50px;">
+	                	<img id="logo" style="width: 500px" src="{% static 'tumblr/images/section_2_centralimage.png' %}"/>
+	                	<div style="width: 600px;position: relative;display: block; margin-left: auto; margin-right: auto;">
+		                	<h1 class="homeh1">Tumblr es tan fácil de utilizar que es difícil explicarlo.</h1>
+		                	<p style="text-align: center;">Hemos conseguido que crear un blog y llenarlo de contenidos sea insultantemente sencillo. Historias, fotos, GIFs, cosas del fandom, enlaces, ideas ocurrentes, humor absurdo (e inteligente), canciones de Spotify, mp3s, vídeos, novedades sobre moda, arte en estado puro, pensamientos profundos... Todo tiene cabida en los 480 millones de blogs que forman Tumblr.</p>
+	                	</div>
+
+	                </div>
+				</section>
+            </main>
+                
             {% endblock %}
         {% endif %}
     </body>
