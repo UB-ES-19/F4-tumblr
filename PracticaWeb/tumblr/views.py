@@ -17,16 +17,26 @@ def register(request):
     if request.method == 'POST':
         form = SignUpForm(request.POST)
         if form.is_valid():
-            form.save()
-            username = form.cleaned_data.get('username')
-            password = form.cleaned_data.get('password1')
-            user = authenticate(username=username, password=password)
-            login(request, user)
-            return HttpResponseRedirect(reverse("index"))
+            try:
+                email = form.cleaned_data.get('email')
+                User.objects.get(email=email)
+                form = SignUpForm()
+                return render(request, "registration/register.html", {
+                    'form': form,
+                    'mail_flag': True
+                })
+            except User.DoesNotExist:
+                form.save()
+                username = form.cleaned_data.get('username')
+                password = form.cleaned_data.get('password1')
+                user = authenticate(username=username, password=password)
+                login(request, user)
+                return HttpResponseRedirect(reverse("index"))
     else:
         form = SignUpForm()
     return render(request, "registration/register.html", {
         'form': form,
+        'mail_flag': False
     })
 
 

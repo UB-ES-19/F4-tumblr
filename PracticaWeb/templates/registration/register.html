@@ -3,15 +3,30 @@
 {% block content %}
     <p>(Note: This is a temporary register template)</p>
   <h2>Sign up</h2>
-  <form method="post">
-    {% csrf_token %}
+  {% if form.errors %}
     {% for field in form %}
-      <p>
-        {{ field.label_tag }}<br>
-        {{ field }}
-      </p>
+        {% for error in field.errors %}
+            <div class="alert alert-danger">
+                <strong>{{ error|escape }}</strong>
+            </div>
+        {% endfor %}
     {% endfor %}
-    <button class="btn-primary" type="submit">Sign up</button>
-  </form>
+  {% endif %}
+{% if mail_flag %}
+  <div class="alert alert-danger">
+                <strong>Mail already exists</strong>
+            </div>
+  {% endif %}
+    <form method="post">
+      {% csrf_token %}
+      {% for field in form %}
+        <p>
+          {{ field.label_tag }}<br>
+          {{ field }}
+        </p>
+      {% endfor %}
+      <button class="btn-primary" type="submit">Sign up</button>
+    </form>
+
 {% endblock %}
 
