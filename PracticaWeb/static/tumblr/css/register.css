@@ -1,0 +1,99 @@
+#fullBg2 {
+  z-index: -1;
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  top: 0px;
+  background: url("https://66.media.tumblr.com/1a57e95c1d1678114f5874be4980773a/e8d1798ccd977133-bc/s1280x1920/dd3565452e846ea6d6e5b4c40c50775149a58745.png") no-repeat center center fixed;
+
+
+  background-size: cover;
+
+}
+
+.form-signup{
+
+  max-width: 280px;
+  margin: 60px auto 10px;
+
+}
+
+.empty-form {
+  text-align: center;
+  font-weight: bold;
+  color: #fff;
+  margin-bottom: 20px;
+
+}
+
+.form-register {
+  max-width: 280px;
+  margin: 60px auto 10px;
+}
+.form-register .form-register-heading {
+  text-align: center;
+  font-weight: bold;
+  color: #fff;
+  margin-bottom: 20px;
+}
+.form-register .checkbox {
+  font-weight: normal;
+}
+.form-register.form-control {
+  position: relative;
+  font-size: 16px;
+  height: auto;
+  padding: 10px;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+.form-register input[type="text"] {
+  margin-bottom: -1px;
+  border-top: 1px solid transparent;
+  border-right: 1px solid transparent;
+  border-left: 1px solid transparent;
+  box-shadow: none;
+  border-radius: 3px 3px 0px 0px;
+}
+.form-register input[type="text"]:focus {
+  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+}
+.form-register input[type="password"] {
+  z-index: 2;
+  margin-bottom: 20px;
+  border-top: none;
+  border-bottom: 1px solid transparent;
+  border-right: 1px solid transparent;
+  border-left: 1px solid transparent;
+  border-radius: 0px 0px 3px 3px;
+  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+}
+.form-register input[type="password"]:focus {
+  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0px 1px 0px 0px rgba(255, 255, 255, 0.5);
+}
+.form-register .btn {
+  font-weight: bold;
+  border-radius: 2px;
+  border: none;
+}
+
+.fullBg2 {
+    z-index: 2;
+  margin-bottom: 20px;
+  border-top: none;
+  border-bottom: 1px solid transparent;
+  border-right: 1px solid transparent;
+  border-left: 1px solid transparent;
+  border-radius: 0px 0px 3px 3px;
+  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+  color: white;
+}
+
+
+
+p.sign-in {
+  color: #fff;
+  font-size: 12px;
+}
+
