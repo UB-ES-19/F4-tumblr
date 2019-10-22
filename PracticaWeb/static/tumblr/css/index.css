@@ -1,0 +1,109 @@
+/* Those big square buttons */
+.button-block {
+    width: 300px;
+    position: relative;
+    top: 10px;
+}
+.button-block:hover {
+    text-decoration: none;
+}
+
+/* Top-left t logo */
+#t-logo {
+    width: 20px;
+    margin: 20px;
+}
+
+/* Main big logo */
+#logo {
+    width: 300px;
+    margin-bottom: 20px;
+}
+
+/* Centering and other stylings on #main children */
+#main > img {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#main > p {
+    text-align: center;
+    color: white;
+    margin-bottom: 0;
+}
+
+#main > a {
+    margin: auto;
+    margin-bottom: 10px;
+}
+
+.section {
+  /* Needed for children to be absolutely positioned relative to the parent. */
+  position: relative;
+  /* The height of the container. Must be set, but it doesn't really matter what the value is. */
+  height: 100vh;
+
+  /* For text formatting. */
+  display: flex;
+  justify-content: center;
+  color: white;
+}
+
+.wrapper {
+  /* The height needs to be set to a fixed value for the effect to work.
+   * 100vh is the full height of the viewport. */
+  height: 100vh;
+  /* The scaling of the images would add a horizontal scrollbar, so disable x overflow. */
+  overflow-x: hidden;
+  /* Enable scrolling on the page. */
+  overflow-y: auto;
+}
+
+.parallax::after {
+  /* Display and position the pseudo-element */
+  content: " ";
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+
+  /* Move the pseudo-element back away from the camera,
+   * then scale it back up to fill the viewport.
+   * Because the pseudo-element is further away, it appears to move more slowly, like in real life. 
+  transform: translateZ(-1px) scale(1.5);*/
+  /* Force the background image to fill the whole element. */
+  background-size: 100%;
+  /* Keep the image from overlapping sibling elements. */
+  z-index: -1;
+}
+
+/* Sets the actual background images to adorable kitties. This part is crucial. */
+.bg1::after {
+  background-image: url('https://66.media.tumblr.com/bcc404fda93ce9cdaa8dd154b7e508ad/tumblr_pxvv3tltYI1utlebro2_1280.png');
+}
+
+.bg2::after {
+  background-image: url('https://placekitten.com/g/800/600');
+}
+
+.homeh1{
+    font-size: 42px;
+    color: #fff;
+    font-family: Gibson,Helvetica Neue,HelveticaNeue,Helvetica,Arial,sans-serif;
+    line-height: 1;
+    margin-bottom: 15px;
+    text-align: center;
+}
+
+
+/* Magic CSS3 scroll snapping effect */
+
+main.wrapper {
+  scroll-snap-type: y mandatory;
+}
+
+main.wrapper > section {
+  scroll-snap-align: start;
+}

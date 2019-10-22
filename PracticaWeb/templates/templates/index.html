@@ -1,11 +1,85 @@
-{% block content %}
-<p>(Note: This is a temporary home template)</p>
-{% if request.user.is_authenticated %}
-    <h4>Logged in as: {{request.user.username}}</h4>
-    <button class="btn-primary"  type="submit" onclick="location.href='{% url 'logout' %}'">Sign out</button>
-{% else %}
-    <a href="/register">Register</a>
-    <a href="/login-email">Log in</a>
+{% load static %}
 
-{% endif %}
-{% endblock %}
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Sign up | Tumblr</title>
+        <meta charset="utf-8">
+        <!-- Bootstrap -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+        <!-- CSS -->
+        <link rel="stylesheet" href="{% static 'tumblr/css/login.css' %}">
+        <link rel="stylesheet" href="{% static 'tumblr/css/index.css' %}">
+    </head>
+    <body>
+        {% if request.user.is_authenticated %}
+            <h4>Logged in as: {{request.user.username}}</h4>
+            <a href="{% url 'logout' %}" class="btn btn-lg btn-primary btn-block btn-link" style="color: white;">Sign out</a>
+        {% else %}
+            {% block content %}
+            <main class="wrapper">
+                <section class="section parallax bg1">
+
+	                <!-- Top-left t logo -->
+	                <div>
+	                    <a href="/"><img id="t-logo" src="{% static 'tumblr/images/t_logo.png' %}"/></a>
+	                </div>
+
+	                <!-- Main form in the middle of the page -->
+	                <div id="main" class="container" style="position: relative; top: 250px;">
+	                    <img id="logo" src="{% static 'tumblr/images/tumblr image.png' %}"/>
+	                    <p>Come for what you love.</p>
+	                    <p>Stay for what you discover.</p>
+	                    <a href="/register" class="button-block btn btn-lg btn-primary btn-block btn-link" style="color: white;">Get Started</a>
+	                    <a href="/login-email" class="button-block btn btn-lg btn-block btn-link" style="background-color: white; color: black;">Log In</a>
+
+	                </div>
+            </section>
+
+				<section class="section parallax bg2" style="background-color: #00d011;">
+	                <div id="main" class="container" style="position: relative; top: 50px;">
+	                	<img id="logo" style="width: 500px" src="{% static 'tumblr/images/section_2_centralimage.png' %}"/>
+	                	<div style="width: 600px;position: relative;display: block; margin-left: auto; margin-right: auto;">
+		                	<h1 class="homeh1">Tumblr es tan fácil de utilizar que es difícil explicarlo.</h1>
+		                	<p style="text-align: center;">Hemos conseguido que crear un blog y llenarlo de contenidos sea insultantemente sencillo. Historias, fotos, GIFs, cosas del fandom, enlaces, ideas ocurrentes, humor absurdo (e inteligente), canciones de Spotify, mp3s, vídeos, novedades sobre moda, arte en estado puro, pensamientos profundos... Todo tiene cabida en los 480 millones de blogs que forman Tumblr.</p>
+	                	</div>
+
+	                </div>
+				</section>
+
+                <section class="section parallax bg2" style="background-color: #7c5cff;">
+                    <div id="main" class="container" style="position: relative; top: 50px;">
+                        <div style="width: 600px;position: relative;display: block;">
+                            <h1 class="homeh1" style="text-align: left;">Tumblr no es nada sin sus blogs.</h1>
+                            <p style="text-align: left;">Resulta que, cuando consigues que crear contenidos interesantes sea fácil, la gente lo hace. Todos esos blogs que te han pasado tus amigos alguna vez, esos que te hacen reír y maravillarte, están en Tumblr. Te ayudaremos a encontrarlos y seguirlos, y se lo pondremos fácil a otros usuarios para que hagan lo propio con el tuyo.</p>
+                        </div>
+                        <img id="logo" style="width: 100%; position: absolute; bottom: 0;" src="{% static 'tumblr/images/section_3_centralimage.png' %}"/>
+                    </div>
+                </section>
+
+                <section class="section parallax bg2" style="background-color: #001935;">
+                    <div id="main" class="container" style="position: relative; top: 50px;">
+                        <img id="logo" style="height: 80%; width: auto; float: left;" src="{% static 'tumblr/images/section_4_centralimage.png' %}"/>
+                        <div>
+                            <h1 class="homeh1" style="text-align: left;">Ya sabes cómo funciona.</h1>
+                            <p style="text-align: left;">Cuando sigues un blog, todas sus publicaciones aparecen en tu Escritorio, como es de esperar. Si ves algo interesante, anímate a rebloguearlo. También puedes añadir un comentario y darle tu toque personal: otros usuarios harán lo mismo con tus publicaciones. ¡Así es como se conoce gente por aquí!</p>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="section parallax bg2" style="background-color: #ff8a00;">
+                    <div id="main" class="container" style="position: relative; top: 50px;">
+                        <img id="logo" style="width: auto;" src="{% static 'tumblr/images/section_5_centralimage.png' %}"/>
+                        <div style="width: 600px; position: relative; margin-left: auto; margin-right: auto;">
+                            <h1 class="homeh1">En serio, puedes compartir lo que quieras.</h1>
+                            <p style="text-align: center;">Hay siete tipos de publicaciones. Empieza por ahí: tu cerebro se encargará del resto. Todo esto es tuyo, así que úsalo como te plazca.</p>
+                        </div>
+                    </div>
+                </section>
+
+            </main>
+                
+            {% endblock %}
+        {% endif %}
+    </body>
+</html>
