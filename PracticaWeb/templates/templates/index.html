@@ -1,4 +1,5 @@
 {% load static %}
+{% load upload_photo %}
 
 <!DOCTYPE html>
 <html lang="en">
@@ -15,6 +16,7 @@
         {% if request.user.is_authenticated %}
             <h4>Logged in as: {{request.user.username}}</h4>
             <a href="{% url 'logout' %}" class="btn btn-lg btn-primary btn-block btn-link" style="color: white;">Sign out</a>
+            {% upload_photo %}
         {% else %}
             {% block content %}
             <main class="wrapper">
