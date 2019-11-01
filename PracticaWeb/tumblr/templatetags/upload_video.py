@@ -5,6 +5,6 @@ from django import template
 
 register = template.Library()
 
-@register.inclusion_tag('posts/upload_photo.html')
-def upload_photo():
-    return {}
+@register.inclusion_tag('posts/upload_video.html')
+def upload_video(form):
+    return {'video_form': form}
