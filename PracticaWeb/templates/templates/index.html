@@ -10,13 +10,18 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        <title>Sign up | Tumblr</title>
+        <title>{% if not request.user.is_authenticated %}Sign up | {% endif %}Tumblr</title>
         <meta charset="utf-8">
         <!-- Bootstrap -->
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
         <!-- CSS -->
+        <link rel="stylesheet" href="{% static 'tumblr/css/fonts.css' %}">
         <link rel="stylesheet" href="{% static 'tumblr/css/login.css' %}">
         <link rel="stylesheet" href="{% static 'tumblr/css/index.css' %}">
+        {% if request.user.is_authenticated %}
+            <link rel="stylesheet" href="{% static 'tumblr/css/dashboard.css' %}">
+            <link rel="stylesheet" href="{% static 'tumblr/css/upload.css' %}">
+        {% endif %}
         <!-- JS -->
         <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
@@ -24,24 +29,67 @@
     </head>
     <body>
         {% if request.user.is_authenticated %}
-            <h4>Logged in as: {{request.user.username}}</h4>
-            <a href="{% url 'logout' %}" class="btn btn-lg btn-primary btn-block btn-link" style="color: white;">Sign out</a>
-            {% if video_type_error %}
-                    <p>Video expects an mp3 format</p>
-            {% endif %}
-            {% upload_audio audio_form %}
-            {% upload_chat chat_form %}
-            {% if video_type_error %}
-                    <p>Video expects an jpg format</p>
-            {% endif %}
-            {% upload_image image_form %}
-            {% upload_link link_form %}
-            {% upload_quote quote_form %}
-            {% upload_text text_form %}
-            {% if video_type_error %}
-                    <p>Video expects an mp4 format</p>
-            {% endif %}
-            {% upload_video video_form %}
+
+
+        <!-- <a href="{% url 'logout' %}" class="btn btn-lg btn-primary btn-block btn-link" style="color: white;">Sign out</a> -->
+
+
+            <nav class="navbar fixed-top navbar-light bg-light">
+                <a class="navbar-brand" href="#"><img width="20px" src="{% static 'tumblr/images/t_logo.png' %}"></a>
+                <div class="navbar-buttons" class="ml-auto">
+                    <a href="{% url 'logout' %}">&#xEAA6;</a>
+                </div>
+            </nav>
+
+            <div id="dashboard-content" class="container">
+                <div class="row">
+
+                    <!-- Blank space before the feed -->
+                    <div class="col-1">
+                    </div>
+
+                    <!-- The upload buttons and the posts feed -->
+                    <div class="col-7">
+                        <div id="upload-bar">
+                            {# Text #}
+                            {% upload_text text_form %}
+                        
+                            {# Image #}
+                            {% upload_image image_form %}
+                            {% if image_type_error %}
+                                <p>Image expects an mp3 format</p>
+                            {% endif %}
+                        
+                            {# Quote #}
+                            {% upload_quote quote_form %}
+                        
+                            {# Link #}
+                            {% upload_link link_form %}
+                        
+                            {# Chat #}
+                            {% upload_chat chat_form %}
+                        
+                            {# Audio #}
+                            {% upload_audio audio_form %}
+                            {% if audio_type_error %}
+                                <p>Audio expects an jpg format</p>
+                            {% endif %}
+                        
+                            {# Video #}
+                            {% upload_video video_form %}
+                            {% if video_type_error %}
+                                <p>Video expects an mp4 format</p>
+                            {% endif %}
+                        </div>
+
+                    </div>
+
+                    <!-- Recommended blogs, etc. -->
+                    <div class="col-4">
+                    </div>
+                </div>
+            </div>
+
         {% else %}
             {% block content %}
             <main class="wrapper">

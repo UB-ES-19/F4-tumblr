@@ -1,0 +1,5 @@
+/* Load the tumblr-icon font which is used to render a few icons */
+@font-face {
+    font-family: 'tumblrIcons';
+    src: url('../fonts/tumblr-icons.woff2');
+}
