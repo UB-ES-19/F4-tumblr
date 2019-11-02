@@ -17,17 +17,18 @@
         </button>
       </div>
       <div class="modal-body">
-          <h1>Quote Uploader</h1>
-                <form enctype="multipart/form-data" method="POST" action="{% url 'quote_upload'%}">
+            <form enctype="multipart/form-data" method="POST" action="{% url 'quote_upload'%}">
                 {% csrf_token %}
-                {{ quote_form.as_p }}
-                <input type="submit" value="Upload"/>
-                </form>
+                <div class="form-group">
+                    <input type="text" class="form-control" name="quote" id="quote" placeholder='"Quote"', style="font-size: xx-large">
+                    <input type="text" class="form-control" name="source" id="source" placeholder="— Source", style="font-size: smaller">
+                </div>
+            </form>
 
       </div>
         <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
+        <button type="button" class="btn btn-primary">Post</button>
       </div>
     </div>
   </div>
