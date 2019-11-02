@@ -41,3 +41,15 @@ body {
 .navbar-buttons a:active {
     color: white;
 }
+
+input[type=file]{
+    color:transparent;
+}
+
+.upload-centered-text{
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
+    /* vertical-align: middle; */
+    text-align: center;
+}

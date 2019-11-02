@@ -29,13 +29,39 @@ def index(request):
 
 
 def audio_upload(request):
-    pass
+    audio_form = AudioForm(request.POST or None, request.FILES or None)
+    if audio_form.is_valid():
+        post = audio_form.save(commit=False)
+        ext = str(post.audiofile)[len(str(post.audiofile))-3:]
+        if ext == 'mp3':
+            post.user = request.user
+            post.save()
+            audio_form = AudioForm(None, None)
+        else:
+            context = {'audio_form': audio_form}
+            context['audio_type_error']= True
+            return render(request, 'templates/index.html', context)
+    context = {'audio_form': audio_form}
+    return index(request)
 
 def chat_upload(request):
     pass
 
 def image_upload(request):
-    pass
+    image_form = ImageForm(request.POST or None, request.FILES or None)
+    if image_form.is_valid():
+        post = image_form.save(commit=False)
+        ext = str(post.imagefile)[len(str(post.imagefile)) - 3:]
+        if ext == 'jpg':
+            post.user = request.user
+            post.save()
+            image_form = ImageForm(None, None)
+        else:
+            context = {'image_form': image_form}
+            context['image_type_error'] = True
+            return render(request, 'templates/index.html', context)
+    context = {'image_form': image_form}
+    return index(request)
 
 def link_upload(request):
     pass
@@ -60,7 +86,7 @@ def video_upload(request):
             context['video_type_error']= True
             return render(request, 'templates/index.html', context)
     context = {'video_form': video_form}
-    return render(request, 'templates/index.html', context)
+    return index(request)
 
 
 def register(request):
