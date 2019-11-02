@@ -1,0 +1,70 @@
+/* Common styles for all the upload modals */
+
+/* The buttons for uploading images, videos, etc. */
+.upload-button {
+    background-color: white;
+    border-color: white;
+    color: rgba(0, 0, 0, 0.65);
+    margin-top: 0;
+}
+.upload-button:hover {
+    background-color: white;
+    border-color: white;
+    color: rgba(0, 0, 0, 0.65);
+}
+.upload-button-icon {
+    font-family: 'tumblrIcons';
+    font-size: 48px;
+}
+
+/* Pop-up effect on hover simulated with <hr> */
+.upload-button hr {
+    border-top: 2px solid transparent;
+    margin: 0;
+    padding: 0;
+}
+.upload-button .hr-under {
+    display: none;
+}
+.upload-button:hover .hr-under {
+    display: block;
+}
+.upload-button:hover .hr-over {
+    display: none;
+}
+
+/* Specific to each type */
+#textUpload .upload-button-icon {
+    color: rgb(0, 0, 0);
+}
+
+#imageUpload .upload-button-icon {
+    color: rgb(255, 73, 47);
+}
+
+#quoteUpload .upload-button-icon {
+    color: rgb(255, 138, 0);
+}
+
+#linkUpload .upload-button-icon {
+    color: rgb(0, 207, 53);
+}
+
+#chatUpload .upload-button-icon {
+    color: rgb(0, 184, 255);
+}
+
+#audioUpload .upload-button-icon {
+    color: rgb(124, 92, 255);
+}
+
+#videoUpload .upload-button-icon {
+    color: rgb(255, 98, 206);
+}
+
+/* The bar that contains all the upload buttons */
+#upload-bar {
+    background-color: white;
+    display: inline-block;
+    border-radius: 12px;
+}

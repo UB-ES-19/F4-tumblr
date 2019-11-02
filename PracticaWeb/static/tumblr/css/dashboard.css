@@ -1,0 +1,43 @@
+body {
+    background-color: #001935;
+}
+
+/* The main div in the dashboard */
+#dashboard-content {
+    margin-top: 100px;
+}
+
+/* Top bar */
+.navbar {
+    color: white;
+    background-color: #001935 !important;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.25);
+    padding: 6px;
+    padding-left: 24px;
+    padding-right: 48px;
+}
+
+.navbar img {
+    margin: -2px;
+    padding: 0;
+}
+
+.navbar-buttons {
+    font-family: 'tumblrIcons';
+    font-size: 24px;
+    color: #a6afb8;
+}
+
+
+.navbar-buttons {
+    font-family: 'tumblrIcons';
+    font-size: 24px;
+    color: #a6afb8;
+}
+
+.navbar-buttons a, .navbar-buttons a:hover {
+    color: #a6afb8;
+}
+.navbar-buttons a:active {
+    color: white;
+}
