@@ -1,0 +1,21 @@
+#quote, #quote_before, #quote_after {
+    color: black;
+    font-family: 'Helvetica Neue,HelveticaNeue,Helvetica,Arial,sans-serif';
+    border: 0px;
+    font-size: 50px;
+}
+#quote:active{
+    border: 0px;
+}
+
+
+#source {
+    color: black;
+    font-family: 'Helvetica Neue,HelveticaNeue,Helvetica,Arial,sans-serif';
+    border: 0px;
+}
+
+#close_btn_quote {
+    position: absolute;
+    left: 15px;
+}
