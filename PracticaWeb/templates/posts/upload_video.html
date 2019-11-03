@@ -1,5 +1,5 @@
 <!-- Button trigger modal -->
-  <button type="button" id="videoUpload" class="upload-button btn btn-primary" data-toggle="modal" data-target="#videoModal">
+  <button type="button" id="videoUpload" class="upload-button btn btn-primary" onclick="displayUpload('video')">
     <hr class="hr-over">
     <span class="upload-button-icon">&#xEA79;</span><br>
     <hr class="hr-under">
@@ -7,14 +7,11 @@
   </button>
 
 <!-- Modal -->
-<div class="modal fade" id="videoModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="upload-modal" id="videoModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title" id="exampleModalLabel">Video Uploader</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
       </div>
       <div class="modal-body media-upload media-dropzone media-container">
                 <p class="upload-centered-text">Upload File</p>
@@ -24,7 +21,7 @@
 
       </div>
 <div class="modal-footer">
-        <button style="align:left" type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-secondary" onclick="hideUploads();">Close</button>
 
         <input type="submit" class="btn btn-primary" value="Upload"/>
         </form>
