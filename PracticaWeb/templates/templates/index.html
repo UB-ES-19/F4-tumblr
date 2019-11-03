@@ -22,6 +22,7 @@
         {% if request.user.is_authenticated %}
             <link rel="stylesheet" href="{% static 'tumblr/css/dashboard.css' %}">
             <link rel="stylesheet" href="{% static 'tumblr/css/upload.css' %}">
+            <script src="{% static 'tumblr/js/upload.js' %}"></script>
         {% endif %}
         <!-- JS -->
         <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
@@ -31,6 +32,8 @@
     <body>
         {% if request.user.is_authenticated %}
 
+        <!-- div used to hide background when opening an upload form. -->
+        <div id="curtain"></div>
 
         <!-- <a href="{% url 'logout' %}" class="btn btn-lg btn-primary btn-block btn-link" style="color: white;">Sign out</a> -->
 

@@ -15,6 +15,7 @@ body {
     padding: 6px;
     padding-left: 24px;
     padding-right: 48px;
+    z-index: 10;
 }
 
 .navbar img {
@@ -52,4 +53,15 @@ input[type=file]{
     transform: translateY(-50%);
     /* vertical-align: middle; */
     text-align: center;
+}
+
+#curtain {
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    z-index: 20;
+    display: none;
+    background-color: rgba(0, 25, 53, .75);
 }
