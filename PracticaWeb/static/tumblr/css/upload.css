@@ -92,3 +92,11 @@
     display: block;
     color: red;
 }
+
+#link {
+    border: none;
+}
+#link:focus {
+    outline: none;
+    box-shadow: none;
+}
