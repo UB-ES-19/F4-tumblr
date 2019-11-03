@@ -87,3 +87,8 @@
     width: 590px;
     z-index: 30;
 }
+
+.upload-error {
+    display: block;
+    color: red;
+}
