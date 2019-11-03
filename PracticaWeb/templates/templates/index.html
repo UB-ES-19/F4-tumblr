@@ -51,19 +51,20 @@
                     <!-- Blank space before the feed -->
                     <div class="col-1">
                     </div>
-                    {% if image_type_error %}
-                        <p>Image expects an mp3 format</p>
-                    {% endif %}
 
-                    {% if audio_type_error %}
-                        <p>Audio expects an jpg format</p>
-                    {% endif %}
-
-                    {% if video_type_error %}
-                        <p>Video expects an mp4 format</p>
-                    {% endif %}
                     <!-- The upload buttons and the posts feed -->
                     <div class="col-7">
+                        {% if image_type_error %}
+                            <p class="upload-error">Image expects an jpg format</p><br>
+                        {% endif %}
+    
+                        {% if audio_type_error %}
+                            <p class="upload-error">Audio expects an mp3 format</p><br>
+                        {% endif %}
+    
+                        {% if video_type_error %}
+                            <p class="upload-error">Video expects an mp4 format</p><br>
+                        {% endif %}
                         <div id="upload-bar">
                             {# Text #}
                             {% upload_text text_form %}
