@@ -11,16 +11,16 @@
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+        <h5 class="modal-title" id="exampleModalLabel">Chat Uploader</h5>
       </div>
       <div class="modal-body">
-          <h1>Chat Uploader</h1>
-                <form enctype="multipart/form-data" method="POST" action="{% url 'chat_upload'%}">
-                {% csrf_token %}
-                {{ chat_form.as_p }}
-                <input type="submit" value="Upload"/>
-                </form>
-
+          <form enctype="multipart/form-data" method="POST" action="{% url 'chat_upload'%}">
+              {% csrf_token %}
+              <div class="form-group">
+                  <input style="color:black; font-size: xx-large" type="text" class="form-control" name="chat-title" id="chat-title" placeholder='Title'>
+                  <textarea style="color:black; height: 150px;font-family:monospace;" class="form-control" name="chat" id="chat" placeholder='Your text here'></textarea>
+              </div>
+          </form>
       </div>
         <div class="modal-footer">
         <button type="button" class="btn btn-secondary" onclick="hideUploads();">Close</button>
