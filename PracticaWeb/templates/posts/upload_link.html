@@ -11,16 +11,15 @@
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+        <h5 class="modal-title" id="exampleModalLabel">Link Uploader</h5>
       </div>
       <div class="modal-body">
-          <h1>Link Uploader</h1>
-                <form enctype="multipart/form-data" method="POST" action="{% url 'link_upload'%}">
-                {% csrf_token %}
-                {{ link_form.as_p }}
-                <input type="submit" value="Upload"/>
-                </form>
-
+          <form enctype="multipart/form-data" method="POST" action="{% url 'link_upload'%}">
+              {% csrf_token %}
+              <div class="form-group">
+                  <input type="text" class="form-control" name="link" id="link" placeholder='Type or paste a URL'>
+              </div>
+          </form>
       </div>
         <div class="modal-footer">
         <button type="button" class="btn btn-secondary" onclick="hideUploads();">Close</button>
