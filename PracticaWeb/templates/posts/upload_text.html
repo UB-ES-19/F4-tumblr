@@ -11,17 +11,17 @@
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+        <h5 class="modal-title" id="exampleModalLabel">Text Uploader</h5>
       </div>
-      <div class="modal-body">
-          <h1>Text Uploader</h1>
-                <form enctype="multipart/form-data" method="POST" action="{% url 'text_upload'%}">
-                {% csrf_token %}
-                {{ text_form.as_p }}
-                <input type="submit" value="Upload"/>
-                </form>
-
-      </div>
+    <div class="modal-body">
+        <form enctype="multipart/form-data" method="POST" action="{% url 'text_upload'%}">
+            {% csrf_token %}
+            <div class="form-group">
+                <input style="color:black; font-size: xx-large" type="text" class="form-control" name="text-title" id="text-title" placeholder='Title'>
+                <textarea style="color:black; height: 150px;" class="form-control" name="text" id="text" placeholder='Your text here'></textarea>
+            </div>
+        </form>
+    </div>
         <div class="modal-footer">
         <button type="button" class="btn btn-secondary" onclick="hideUploads();">Close</button>
         <button type="button" class="btn btn-primary">Save changes</button>
