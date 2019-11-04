@@ -6,6 +6,8 @@
     border-color: white;
     color: rgba(0, 0, 0, 0.65);
     margin-top: 0;
+    margin: 0;
+    width: 80px;
 }
 .upload-button:hover {
     background-color: white;
@@ -67,4 +69,34 @@
     background-color: white;
     display: inline-block;
     border-radius: 12px;
+    padding: 0;
+}
+
+.upload-modal {
+    display: none; /* Hidden by default, only displayed when some upload button is clicked */
+    width: 590px;
+    border-radius: 12px;
+    margin: 0;
+    z-index: 30;
+}
+
+.upload-modal .modal-dialog, .upload-modal .modal-content {
+    padding: 0;
+    margin: 0;
+    border-radius: 12px;
+    width: 590px;
+    z-index: 30;
+}
+
+.upload-error {
+    display: block;
+    color: red;
+}
+
+#link, #text-title, #text, #chat-title, #chat {
+    border: none;
+}
+#link:focus, #text-title:focus, #text:focus, #chat-title:focus, #chat:focus {
+    outline: none;
+    box-shadow: none;
 }

@@ -19,9 +19,12 @@
         <link rel="stylesheet" href="{% static 'tumblr/css/login.css' %}">
         <link rel="stylesheet" href="{% static 'tumblr/css/index.css' %}">
         <link rel="stylesheet" href="{% static 'tumblr/css/upload_quotes.css' %}">
+        <link rel="stylesheet" href="{% static 'tumblr/css/original.css' %}">
+      
         {% if request.user.is_authenticated %}
             <link rel="stylesheet" href="{% static 'tumblr/css/dashboard.css' %}">
             <link rel="stylesheet" href="{% static 'tumblr/css/upload.css' %}">
+            <script src="{% static 'tumblr/js/upload.js' %}"></script>
         {% endif %}
         <!-- JS -->
         <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
@@ -31,6 +34,8 @@
     <body>
         {% if request.user.is_authenticated %}
 
+        <!-- div used to hide background when opening an upload form. -->
+        <div id="curtain"></div>
 
         <!-- <a href="{% url 'logout' %}" class="btn btn-lg btn-primary btn-block btn-link" style="color: white;">Sign out</a> -->
 
@@ -51,15 +56,24 @@
 
                     <!-- The upload buttons and the posts feed -->
                     <div class="col-7">
+                        {% if image_type_error %}
+                            <p class="upload-error">Image expects an jpg format</p><br>
+                        {% endif %}
+    
+                        {% if audio_type_error %}
+                            <p class="upload-error">Audio expects an mp3 format</p><br>
+                        {% endif %}
+    
+                        {% if video_type_error %}
+                            <p class="upload-error">Video expects an mp4 format</p><br>
+                        {% endif %}
                         <div id="upload-bar">
                             {# Text #}
                             {% upload_text text_form %}
                         
                             {# Image #}
                             {% upload_image image_form %}
-                            {% if image_type_error %}
-                                <p>Image expects an mp3 format</p>
-                            {% endif %}
+
                         
                             {# Quote #}
                             {% upload_quote quote_form %}
@@ -72,15 +86,11 @@
                         
                             {# Audio #}
                             {% upload_audio audio_form %}
-                            {% if audio_type_error %}
-                                <p>Audio expects an jpg format</p>
-                            {% endif %}
+
                         
                             {# Video #}
                             {% upload_video video_form %}
-                            {% if video_type_error %}
-                                <p>Video expects an mp4 format</p>
-                            {% endif %}
+
                         </div>
 
                     </div>

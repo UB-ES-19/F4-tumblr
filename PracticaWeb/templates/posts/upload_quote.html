@@ -1,12 +1,12 @@
 <!-- Button trigger modal -->
-  <button type="button" id="quoteUpload" class="btn btn-primary upload-button" data-toggle="modal" data-target="#quoteModal">
+  <button type="button" id="quoteUpload" class="btn btn-primary upload-button" data-toggle="modal" onclick="displayUpload('quote')">
     <hr class="hr-over">
     <span class="upload-button-icon">&#xEA75;</span><br>
     <hr class="hr-under">
     <span class="upload-button-caption">Quote</span>
   </button>
 <!-- Modal -->
-<div class="modal fade" id="quoteModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="upload-modal" id="quoteModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
@@ -25,8 +25,8 @@
 
       </div>
         <div class="modal-footer">
-        <button type="button" class="btn btn-secondary"  id="close_btn_quote" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary" id="post_btn_quote">Post</button>
+        <button type="button" class="btn btn-secondary" id="close_btn_quote" onclick="hideUploads();">Close</button>
+        <button type="button" class="btn btn-primary" id="post_btn_quote">Save changes</button>
       </div>
     </div>
   </div>

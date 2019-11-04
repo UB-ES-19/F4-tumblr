@@ -17,9 +17,10 @@ class SignUpForm(UserCreationForm):
 
 
 class AudioForm(forms.ModelForm):
+    audiofile = forms.FileField(label='', widget=forms.FileInput(attrs={'style': 'opacity: 0; height:270px; width: 100%'}))
     class Meta:
         model= Audio
-        fields= ["name", "audiofile"]
+        fields= ["audiofile"]
 
 class ChatForm(forms.ModelForm):
     # Template from video form, to change
@@ -28,29 +29,31 @@ class ChatForm(forms.ModelForm):
         fields= ["name", "videofile"]
 
 class ImageForm(forms.ModelForm):
+    imagefile = forms.FileField(label='', widget=forms.FileInput(attrs={'style': 'opacity: 0; height:270px; width: 100%'}))
     class Meta:
         model= Image
-        fields= ["name", "imagefile"]
+        fields= ["imagefile"]
 
 class LinkForm(forms.ModelForm):
     # Template from video form, to change
     class Meta:
-        model= Video
+        model= Link
         fields= ["name", "videofile"]
 
 class QuoteForm(forms.ModelForm):
     # Template from video form, to change
     class Meta:
-        model= Video
+        model= Quote
         fields= ["name", "videofile"]
 
 class TextForm(forms.ModelForm):
     # Template from video form, to change
     class Meta:
-        model= Video
+        model= Text
         fields= ["name", "videofile"]
 
 class VideoForm(forms.ModelForm):
+    videofile = forms.FileField(label='', widget=forms.FileInput(attrs={'style': 'opacity: 0; height:270px; width: 100%'}))
     class Meta:
         model= Video
-        fields= ["name", "videofile"]
+        fields= ["videofile"]

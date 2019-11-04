@@ -3,12 +3,11 @@ from django.db import models
 from django.contrib.auth.models import User
 
 class Audio(models.Model):
-    name=models.CharField(max_length=500)
     user=models.CharField(max_length=500)
     audiofile= models.FileField(upload_to='audios/', null=True, verbose_name="")
 
     def __str__(self):
-        return self.name + ": " + str(self.audiofile)
+        return str(self.audiofile)
 
 class Chat(models.Model):
     # Template of video file, to change
@@ -20,12 +19,11 @@ class Chat(models.Model):
         return self.name + ": " + str(self.videofile)
 
 class Image(models.Model):
-    name=models.CharField(max_length=500)
     user=models.CharField(max_length=500)
     imagefile= models.FileField(upload_to='images/', null=True, verbose_name="")
 
     def __str__(self):
-        return self.name + ": " + str(self.imagefile)
+        return str(self.imagefile)
 
 class Link(models.Model):
     # Template of video file, to change
@@ -53,9 +51,8 @@ class Text(models.Model):
 
 class Video(models.Model):
     # Template of video file, to change
-    name= models.CharField(max_length=500)
     user=models.CharField(max_length=500)
     videofile= models.FileField(upload_to='videos/', null=True, verbose_name="")
 
     def __str__(self):
-        return self.name + ": " + str(self.videofile)
+        return str(self.videofile)
