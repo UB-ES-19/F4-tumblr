@@ -44,7 +44,7 @@ class QuoteForm(forms.ModelForm):
     # Template from video form, to change
     class Meta:
         model= Quote
-        fields= ["name", "videofile"]
+        fields= [ "quote", "source"]
 
 class TextForm(forms.ModelForm):
     # Template from video form, to change
