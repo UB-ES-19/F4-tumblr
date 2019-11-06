@@ -67,7 +67,14 @@ def link_upload(request):
     pass
 
 def quote_upload(request):
-    pass
+    if request.method == "POST":
+        quote_form = QuoteForm(request.POST)
+        if quote_form.is_valid():
+            quote = quote_form.save(commit=False)
+            quote.user = request.user
+            quote.save()
+    context = {'quote_form': quote_form}
+    return index(request, 'templates/index.html', context)
 
 def text_upload(request):
     pass
