@@ -74,7 +74,7 @@ def quote_upload(request):
             quote.user = request.user
             quote.save()
     context = {'quote_form': quote_form}
-    return index(request, 'templates/index.html', context)
+    return index(request)
 
 def text_upload(request):
     pass
