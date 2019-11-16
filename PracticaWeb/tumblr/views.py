@@ -134,20 +134,3 @@ def check_email(request):
     else:
         return render(request, "registration/login-email.html")
 
-
-
-
-def showvideo(request):
-    lastvideo = Video.objects.last()
-
-    videofile = lastvideo.videofile
-
-    form = VideoForm(request.POST or None, request.FILES or None)
-    if form.is_valid():
-        form.save()
-
-    context = {'videofile': videofile,
-               'form': form
-               }
-
-    return render(request, 'Blog/videos.html', context)
