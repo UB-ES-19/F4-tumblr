@@ -5,10 +5,12 @@ from django.http import HttpResponseRedirect
 from django.shortcuts import render
 from django.urls import reverse
 from django.contrib.auth import authenticate, login
-
 from tumblr.forms import SignUpForm
 from .models import Audio, Chat, Image, Link, Quote, Text, Video
 from .forms import AudioForm, ChatForm, ImageForm, LinkForm, QuoteForm, TextForm, VideoForm
+from itertools import chain
+from operator import attrgetter
+
 
 def index(request):
     audio_form = AudioForm(request.POST or None, request.FILES or None)
@@ -25,7 +27,43 @@ def index(request):
                'quote_form': quote_form,
                'text_form': text_form,
                'video_form': video_form}
+
     return render(request, 'templates/index.html', context)
+
+
+def profile(request):
+    audio_form = AudioForm(request.POST or None, request.FILES or None)
+    chat_form = ChatForm(request.POST or None, request.FILES or None)
+    image_form = ImageForm(request.POST or None, request.FILES or None)
+    link_form = LinkForm(request.POST or None, request.FILES or None)
+    quote_form = QuoteForm(request.POST or None, request.FILES or None)
+    text_form = TextForm(request.POST or None, request.FILES or None)
+    video_form = VideoForm(request.POST or None, request.FILES or None)
+    audio_found = Audio.objects.filter(user=request.user.username)
+    chat_found = Chat.objects.filter(user=request.user.username)
+    image_found = Image.objects.filter(user=request.user.username)
+    link_found = Link.objects.filter(user=request.user.username)
+    quote_found = Quote.objects.filter(user=request.user.username)
+    text_found = Text.objects.filter(user=request.user.username)
+    video_found = Video.objects.filter(user=request.user.username)
+    posts = sorted(chain(audio_found,
+                         chat_found,
+                         image_found,
+                         link_found,
+                         quote_found,
+                         text_found,
+                         video_found), key=attrgetter('timestamp'), reverse=True)
+    print(posts)
+    context = {'audio_form': audio_form,
+               'chat_form': chat_form,
+               'image_form': image_form,
+               'link_form': link_form,
+               'quote_form': quote_form,
+               'text_form': text_form,
+               'video_form': video_form,
+               'posts': posts}
+
+    return render(request, 'templates/profile.html', context)
 
 
 def audio_upload(request):
@@ -133,4 +171,3 @@ def check_email(request):
             return HttpResponse("This email doesn't have a Tumblr account.")
     else:
         return render(request, "registration/login-email.html")
-

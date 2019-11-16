@@ -13,4 +13,5 @@ urlpatterns = [
     url(r'^quote_upload$', views.quote_upload, name='quote_upload'),
     url(r'^text_upload$', views.text_upload, name='text_upload'),
     url(r'^video_upload$', views.video_upload, name='video_upload'),
+    url(r'^profile$', views.profile, name='profile'),
 ]

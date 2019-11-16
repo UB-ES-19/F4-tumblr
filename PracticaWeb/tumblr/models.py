@@ -45,7 +45,7 @@ class Quote(models.Model):
     id = models.AutoField(primary_key=True)
     timestamp = models.DateTimeField(auto_now_add=True)
     type = models.CharField(max_length=50, default='quote', editable=False)
-    user = models.ForeignKey(User, on_delete=models.DO_NOTHING, default=1)
+    user = models.CharField(max_length=500)
     quote = models.TextField(max_length=200, default='')
     source = models.TextField(max_length=200, default='')
 

@@ -7,7 +7,13 @@
 {% load upload_text %}
 {% load upload_video %}
 
-
+{% load show_audio %}
+{% load show_chat %}
+{% load show_image %}
+{% load show_link %}
+{% load show_quote %}
+{% load show_text %}
+{% load show_video %}
 
 <!DOCTYPE html>
 <html lang="en">
@@ -22,7 +28,7 @@
         <link rel="stylesheet" href="{% static 'tumblr/css/index.css' %}">
         <link rel="stylesheet" href="{% static 'tumblr/css/upload_quotes.css' %}">
         <link rel="stylesheet" href="{% static 'tumblr/css/original.css' %}">
-      
+
         {% if request.user.is_authenticated %}
             <link rel="stylesheet" href="{% static 'tumblr/css/dashboard.css' %}">
             <link rel="stylesheet" href="{% static 'tumblr/css/upload.css' %}">
@@ -48,54 +54,82 @@
                     <a href="{% url 'profile' %}">&#xEAA6;</a>
                     <a href="{% url 'logout' %}">&#x2717;</a>
                 </div>
-
             </nav>
+
+
 
             <div id="dashboard-content" class="container">
                 <div class="row">
 
-                    <!-- Blank space before the feed -->
-                    <div class="col-1">
-                    </div>
+
 
                     <!-- The upload buttons and the posts feed -->
                     <div class="col-7">
-                        {% if image_type_error %}
-                            <p class="upload-error">Image expects an jpg format</p><br>
-                        {% endif %}
-    
-                        {% if audio_type_error %}
-                            <p class="upload-error">Audio expects an mp3 format</p><br>
-                        {% endif %}
-    
-                        {% if video_type_error %}
-                            <p class="upload-error">Video expects an mp4 format</p><br>
-                        {% endif %}
-                        <div id="upload-bar">
-                            {# Text #}
-                            {% upload_text text_form %}
-                        
-                            {# Image #}
-                            {% upload_image image_form %}
+                        <div class="row">
+                            <!-- Blank space before the feed -->
+                            <div class="col-1">
+                            </div>
 
-                        
-                            {# Quote #}
-                            {% upload_quote quote_form %}
-                        
-                            {# Link #}
-                            {% upload_link link_form %}
-                        
-                            {# Chat #}
-                            {% upload_chat chat_form %}
-                        
-                            {# Audio #}
-                            {% upload_audio audio_form %}
+                            <div class="col-11" style="padding-left: 15px;padding-right: 0px;">
+                            {% if image_type_error %}
+                                <p class="upload-error">Image expects an jpg format</p><br>
+                            {% endif %}
 
-                        
-                            {# Video #}
-                            {% upload_video video_form %}
+                            {% if audio_type_error %}
+                                <p class="upload-error">Audio expects an mp3 format</p><br>
+                            {% endif %}
 
+                            {% if video_type_error %}
+                                <p class="upload-error">Video expects an mp4 format</p><br>
+                            {% endif %}
+                            <div id="upload-bar">
+                                {# Text #}
+                                {% upload_text text_form %}
+
+                                {# Image #}
+                                {% upload_image image_form %}
+
+
+                                {# Quote #}
+                                {% upload_quote quote_form %}
+
+                                {# Link #}
+                                {% upload_link link_form %}
+
+                                {# Chat #}
+                                {% upload_chat chat_form %}
+
+                                {# Audio #}
+                                {% upload_audio audio_form %}
+
+
+                                {# Video #}
+                                {% upload_video video_form %}
+
+                            </div>
+                            </div>
                         </div>
+                        {% for post in posts %}
+
+                            <!-- AQUI DUPLICAR ESTRUCTURA PARA CADA TIPO -->
+                            <!-- AQUI DUPLICAR ESTRUCTURA PARA CADA TIPO -->
+                            <!-- AQUI DUPLICAR ESTRUCTURA PARA CADA TIPO -->
+                            {%  if post.type == 'image' %}
+                            <div class="row">
+                                <hr style="width:100%;border-top: 10px solid transparent;">
+                                <div class="col-1" style="padding-left: 0px;padding-right: 0px;">
+                                    <img width="100%" src="{% static 'tumblr/images/profile_image_default.png' %}">
+                                </div>
+                                <div class="col-11" style="padding-right:10px;">
+                                        {% show_image post request %}
+                                        <hr style="width:100%;border-top: 15px solid transparent;margin-top: 0px;
+                                        margin-bottom: 0px;">
+                                </div>
+                            </div>
+                            {% else %}
+
+                            {% endif %}
+                        {% endfor %}
 
                     </div>
 
@@ -168,8 +202,10 @@
                 </section>
 
             </main>
-                
+
             {% endblock %}
         {% endif %}
+
+
     </body>
 </html>
