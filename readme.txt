@@ -8,7 +8,6 @@ Then, go to the PracticaWeb directory and run 'python manage.py dumpdata --natur
 
 Then, recomment the one with the sqlite3 and uncomment the one with the mysql.
 
-
-Now, download the MySQL Program from their website. Then, run the installation program and define the password of te root user: 'adminadmin'. After the installation, run in a terminal 'pip install pymysql'.
+Now, download the MySQL Program (server) from their website. Then, run the installation program and define the password of the root user: 'adminadmin', then create a database called 'dumblr'. After the installation, run in a terminal 'pip install pymysql'.
 
 Once all of that is done, try to run 'python manage.py migrate'. If that does not fail, then simply run 'python manage.py loaddata datadump.json' to load all the data that the database had before.
