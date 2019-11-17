@@ -16,8 +16,8 @@
           <form enctype="multipart/form-data" method="POST" action="{% url 'quote_upload'%}">
               {% csrf_token %}
               <div class="form-group">
-                  <input type="text" class="form-control" name="quote" id="quote" placeholder='"Quote"'>
-                  <input type="text" class="form-control" name="source" id="source" placeholder="— Source">
+                  <input type="text" class="form-control" name="quote" id="quote" placeholder='"Quote"' onchange="addQuotationMarks()">
+                  <input type="text" class="form-control" name="source" id="source" placeholder="— Source" onchange="addSource()">
               </div>
 
 
