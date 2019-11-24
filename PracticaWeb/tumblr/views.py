@@ -168,6 +168,6 @@ def check_email(request):
             User.objects.get(email=search_email)
             return HttpResponseRedirect(reverse("login"))
         except User.DoesNotExist:
-            return HttpResponse("This email doesn't have a Tumblr account.")
+            return HttpResponse("This email doesn't have a Dumblr account.")
     else:
         return render(request, "registration/login-email.html")
