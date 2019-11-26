@@ -114,21 +114,31 @@
                             <!-- AQUI DUPLICAR ESTRUCTURA PARA CADA TIPO -->
                             <!-- AQUI DUPLICAR ESTRUCTURA PARA CADA TIPO -->
                             <!-- AQUI DUPLICAR ESTRUCTURA PARA CADA TIPO -->
-                            {%  if post.type == 'image' %}
                             <div class="row">
                                 <hr style="width:100%;border-top: 10px solid transparent;">
                                 <div class="col-1" style="padding-left: 0px;padding-right: 0px;">
                                     <img width="100%" src="{% static 'tumblr/images/profile_image_default.png' %}">
                                 </div>
                                 <div class="col-11" style="padding-right:10px;">
-                                        {% show_image post request %}
+                                        {% if post.type == 'text' %}
+                                            {% show_text post.title post.text request %}
+                                        {% elif post.type == 'image' %}
+                                            {% show_image post request %}
+                                        {% elif post.type == 'quote' %}
+                                            {% show_quote post.quote post.source request %}
+                                        {% elif post.type == 'link' %}
+                                            {% show_link post.link request %}
+                                        {% elif post.type == 'chat' %}
+                                            {% show_chat post.chat request %}
+                                        {% elif post.type == 'audio' %}
+                                            {% show_audio post.audiofile request %}
+                                        {% elif post.type == 'video' %}
+                                            {% show_video post.videofile request %}
+                                        {% endif %}
                                         <hr style="width:100%;border-top: 15px solid transparent;margin-top: 0px;
                                         margin-bottom: 0px;">
                                 </div>
                             </div>
-                            {% else %}
-
-                            {% endif %}
                         {% endfor %}
 
                     </div>

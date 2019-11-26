@@ -5,9 +5,6 @@ from django import template
 
 register = template.Library()
 
-'''
-CAMBIAR A LA INFO QUE SE QUIERE PASAR 
-'''
 @register.inclusion_tag('show/show_text.html')
-def show_text(image_file, request):
-    return {'image_file': image_file, 'request':request}
+def show_text(title, text, request):
+    return {'title': title, 'text': text, 'request':request}
