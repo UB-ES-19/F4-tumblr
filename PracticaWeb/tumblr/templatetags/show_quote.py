@@ -5,9 +5,6 @@ from django import template
 
 register = template.Library()
 
-'''
-CAMBIAR A LA INFO QUE SE QUIERE PASAR 
-'''
 @register.inclusion_tag('show/show_quote.html')
-def show_quote(image_file, request):
-    return {'image_file': image_file, 'request':request}
+def show_quote(quote, source, request):
+    return {'quote': quote, 'source': source, 'request':request}
