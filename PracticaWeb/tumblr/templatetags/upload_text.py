@@ -5,6 +5,6 @@ from django import template
 
 register = template.Library()
 
-@register.inclusion_tag('posts/upload_text.html')
-def upload_text(form):
-    return {'text_form': form}
+@register.inclusion_tag('posts/upload_text.html', takes_context=True)
+def upload_text(context, form):
+    return {'text_form': form, 'request': context['request']}

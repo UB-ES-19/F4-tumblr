@@ -2,7 +2,7 @@ from django.contrib.auth.models import User
 from django.http import HttpResponse
 from django.contrib.auth.forms import UserCreationForm
 from django.http import HttpResponseRedirect
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.urls import reverse
 from django.contrib.auth import authenticate, login
 from tumblr.forms import SignUpForm
@@ -53,7 +53,6 @@ def profile(request):
                          quote_found,
                          text_found,
                          video_found), key=attrgetter('timestamp'), reverse=True)
-    print(posts)
     context = {'audio_form': audio_form,
                'chat_form': chat_form,
                'image_form': image_form,
@@ -79,6 +78,11 @@ def audio_upload(request):
             context = {'audio_form': audio_form}
             context['audio_type_error']= True
             return render(request, 'templates/index.html', context)
+        # Return to page where we came from
+        if "origin" in request.POST:
+            origin = request.POST.get("origin")
+            origin = origin if origin != "" else "/"
+            return redirect(origin)
     context = {'audio_form': audio_form}
     return index(request)
 
@@ -98,6 +102,11 @@ def image_upload(request):
             context = {'image_form': image_form}
             context['image_type_error'] = True
             return render(request, 'templates/index.html', context)
+        # Return to page where we came from
+        if "origin" in request.POST:
+            origin = request.POST.get("origin")
+            origin = origin if origin != "" else "/"
+            return redirect(origin)
     context = {'image_form': image_form}
     return index(request)
 
@@ -111,6 +120,11 @@ def quote_upload(request):
             quote = quote_form.save(commit=False)
             quote.user = request.user
             quote.save()
+        # Return to page where we came from
+        if "origin" in request.POST:
+            origin = request.POST.get("origin")
+            origin = origin if origin != "" else "/"
+            return redirect(origin)
     context = {'quote_form': quote_form}
     return index(request)
 
@@ -130,6 +144,11 @@ def video_upload(request):
             context = {'video_form': video_form}
             context['video_type_error']= True
             return render(request, 'templates/index.html', context)
+        # Return to page where we came from
+        if "origin" in request.POST:
+            origin = request.POST.get("origin")
+            origin = origin if origin != "" else "/"
+            return redirect(origin)
     context = {'video_form': video_form}
     return index(request)
 

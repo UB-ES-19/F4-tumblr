@@ -18,6 +18,7 @@
               {% csrf_token %}
               <div class="form-group">
                   <input type="text" class="form-control" name="link" id="link" placeholder='Type or paste a URL'>
+                  <input type="hidden" name="origin" value="{{ request.path|urlencode }}">
               </div>
           </form>
       </div>

@@ -5,6 +5,6 @@ from django import template
 
 register = template.Library()
 
-@register.inclusion_tag('posts/upload_audio.html')
-def upload_audio(form):
-    return {'audio_form': form}
+@register.inclusion_tag('posts/upload_audio.html', takes_context=True)
+def upload_audio(context, form):
+    return {'audio_form': form, 'request': context['request']}

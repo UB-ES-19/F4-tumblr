@@ -18,6 +18,7 @@
                 <form enctype="multipart/form-data" method="POST" action="{% url 'image_upload'%}">
                 {% csrf_token %}
                 {{ image_form.as_p }}
+                <input type="hidden" name="origin" value="{{ request.path|urlencode }}">
       </div>
         <div class="modal-footer">
         <button type="button" class="btn btn-secondary" onclick="hideUploads();">Close</button>

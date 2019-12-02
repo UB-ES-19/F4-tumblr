@@ -19,6 +19,7 @@
                 <form enctype="multipart/form-data" method="POST" action="{% url 'audio_upload'%}">
                 {% csrf_token %}
                 {{ audio_form.as_p }}
+                <input type="hidden" name="origin" value="{{ request.path|urlencode }}">
       </div>
         <div class="modal-footer">
         <button type="button" class="btn btn-secondary" onclick="hideUploads();">Close</button>

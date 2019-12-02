@@ -20,5 +20,4 @@ def chat(chat):
     for line in chat.split("\n"):
         line = re.sub(regex, lambda match: "<span style=\"font-weight: bold;\">"+match.group(1)+":</span>", line)
         acc.append(line)
-    print("\n".join(acc))
     return "\n".join(acc)

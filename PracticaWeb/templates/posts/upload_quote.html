@@ -18,6 +18,7 @@
               <div class="form-group">
                   <input type="text" class="form-control" name="quote" id="quote" placeholder='"Quote"' onchange="addQuotationMarks()">
                   <input type="text" class="form-control" name="source" id="source" placeholder="— Source" onchange="addSource()">
+                  <input type="hidden" name="origin" value="{{ request.path|urlencode }}">
               </div>
 
 

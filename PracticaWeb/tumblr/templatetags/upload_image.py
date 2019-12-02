@@ -5,6 +5,6 @@ from django import template
 
 register = template.Library()
 
-@register.inclusion_tag('posts/upload_image.html')
-def upload_image(form):
-    return {'image_form': form}
+@register.inclusion_tag('posts/upload_image.html', takes_context=True)
+def upload_image(context, form):
+    return {'image_form': form, 'request': context['request']}

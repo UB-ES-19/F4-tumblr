@@ -5,6 +5,6 @@ from django import template
 
 register = template.Library()
 
-@register.inclusion_tag('posts/upload_quote.html')
-def upload_quote(form):
-    return {'quote_form': form}
+@register.inclusion_tag('posts/upload_quote.html', takes_context=True)
+def upload_quote(context, form):
+    return {'quote_form': form, 'request': context['request']}

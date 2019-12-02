@@ -19,6 +19,7 @@
               <div class="form-group">
                   <input style="color:black; font-size: xx-large" type="text" class="form-control" name="chat-title" id="chat-title" placeholder='Title'>
                   <textarea style="color:black; height: 150px;font-family:monospace;" class="form-control" name="chat" id="chat" placeholder='Your text here'></textarea>
+                  <input type="hidden" name="origin" value="{{ request.path|urlencode }}">
               </div>
           </form>
       </div>

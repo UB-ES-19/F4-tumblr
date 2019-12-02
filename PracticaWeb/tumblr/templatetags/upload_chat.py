@@ -5,6 +5,6 @@ from django import template
 
 register = template.Library()
 
-@register.inclusion_tag('posts/upload_chat.html')
-def upload_chat(form):
-    return {'chat_form': form}
+@register.inclusion_tag('posts/upload_chat.html', takes_context=True)
+def upload_chat(context, form):
+    return {'chat_form': form, 'request': context['request']}
