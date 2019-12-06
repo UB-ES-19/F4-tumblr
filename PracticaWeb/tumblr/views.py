@@ -184,8 +184,8 @@ def check_email(request):
     if request.method == 'POST':
         search_email = request.POST.get('email', None)
         try:
-            User.objects.get(email=search_email)
-            return HttpResponseRedirect(reverse("login"))
+            user = User.objects.get(email=search_email)
+            return HttpResponseRedirect(reverse("login") + "?username=" + user.username + "&email=" + search_email)
         except User.DoesNotExist:
             return HttpResponse("This email doesn't have a Dumblr account.")
     else:
