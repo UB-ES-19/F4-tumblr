@@ -16,6 +16,8 @@ class SignUpForm(UserCreationForm):
         fields = ('email', 'password1', 'password2', 'username')
 
 
+
+
 class AudioForm(forms.ModelForm):
     audiofile = forms.FileField(label='', widget=forms.FileInput(attrs={'style': 'opacity: 0; height:270px; width: 100%'}))
     class Meta:
