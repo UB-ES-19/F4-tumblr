@@ -6,13 +6,13 @@ from django.shortcuts import render, redirect
 from django.urls import reverse
 from django.contrib.auth import authenticate, login
 from tumblr.forms import SignUpForm
-from .models import Audio, Chat, Image, Link, Quote, Text, Video
+from .models import Audio, Chat, Image, Link, Quote, Text, Video, Follow
 from .forms import AudioForm, ChatForm, ImageForm, LinkForm, QuoteForm, TextForm, VideoForm
 from itertools import chain
 from operator import attrgetter
 
 
-def index(request):
+def index(request, user_found=None):
     audio_form = AudioForm(request.POST or None, request.FILES or None)
     chat_form = ChatForm(request.POST or None, request.FILES or None)
     image_form = ImageForm(request.POST or None, request.FILES or None)
@@ -26,7 +26,8 @@ def index(request):
                'link_form': link_form,
                'quote_form': quote_form,
                'text_form': text_form,
-               'video_form': video_form}
+               'video_form': video_form,
+               'user_found': user_found}
 
     return render(request, 'templates/index.html', context)
 
@@ -190,3 +191,16 @@ def check_email(request):
             return HttpResponse("This email doesn't have a Dumblr account.")
     else:
         return render(request, "registration/login-email.html")
+
+def list_following(request):
+    connections = Follow.objects.filter(creator=request.user)
+    for con in connections:
+        print(con)
+    return connections
+
+def list_users(request):
+    name = request.GET.get('search', None)
+    # Podem intentar listar per similaritat aqui, i no retornar simplement un usuari
+    user_list = User.objects.filter(username=name)
+    print(user_list)
+    return index(request, user_list)
