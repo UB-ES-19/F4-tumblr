@@ -1,0 +1,178 @@
+{% load static %}
+{% load upload_audio %}
+{% load upload_chat %}
+{% load upload_image %}
+{% load upload_link %}
+{% load upload_quote %}
+{% load upload_text %}
+{% load upload_video %}
+
+{% load show_audio %}
+{% load show_chat %}
+{% load show_image %}
+{% load show_link %}
+{% load show_quote %}
+{% load show_text %}
+{% load show_video %}
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>{% if not request.user.is_authenticated %}Sign up | {% endif %}Dumblr</title>
+        <meta charset="utf-8">
+        <!-- Bootstrap -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+        <!-- CSS -->
+        <link rel="stylesheet" href="{% static 'tumblr/css/fonts.css' %}">
+        <link rel="stylesheet" href="{% static 'tumblr/css/login.css' %}">
+        <link rel="stylesheet" href="{% static 'tumblr/css/index.css' %}">
+        <link rel="stylesheet" href="{% static 'tumblr/css/upload_quotes.css' %}">
+        <link rel="stylesheet" href="{% static 'tumblr/css/original.css' %}">
+
+        {% if request.user.is_authenticated %}
+            <link rel="stylesheet" href="{% static 'tumblr/css/dashboard.css' %}">
+            <link rel="stylesheet" href="{% static 'tumblr/css/upload.css' %}">
+            <script src="{% static 'tumblr/js/upload.js' %}"></script>
+        {% endif %}
+        <!-- JS -->
+        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+    </head>
+    <body>
+        {% if request.user.is_authenticated %}
+
+        <!-- div used to hide background when opening an upload form. -->
+        <div id="curtain"></div>
+
+        <!-- <a href="{% url 'logout' %}" class="btn btn-lg btn-primary btn-block btn-link" style="color: white;">Sign out</a> -->
+
+
+            <nav class="navbar fixed-top navbar-light bg-light">
+                <a class="navbar-brand" href="/"><img width="20px" src="{% static 'tumblr/images/t_logo.png' %}"></a>
+                <div class="navbar-buttons" class="ml-auto">
+                    <a href="{% url 'profile' %}">&#xEAA6;</a>
+                    <a href="{% url 'logout' %}">&#x2717;</a>
+                    <form type="GET" class="form-inline my-2 my-lg-0" action="{% url 'add_followed'%}">
+                        <input id="followed" name="followed" type="text" value="{{searched_username}}">
+                        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Follow</button>
+                    </form>
+                </div>
+            </nav>
+
+
+
+            <div id="dashboard-content" class="container">
+                <div class="row">
+
+
+
+                    <!-- The upload buttons and the posts feed -->
+                    <div class="col-7">
+
+                        {% for post in posts %}
+                            <div class="row">
+                                <hr style="width:100%;border-top: 10px solid transparent;">
+                                <div class="col-1" style="padding-left: 0px;padding-right: 0px;">
+                                    <img width="100%" src="{% static 'tumblr/images/profile_image_default.png' %}">
+                                </div>
+                                <div class="col-11" style="padding-right:10px;">
+                                        {% if post.type == 'text' %}
+                                            {% show_text post.title post.text request %}
+                                        {% elif post.type == 'image' %}
+                                            {% show_image post request %}
+                                        {% elif post.type == 'quote' %}
+                                            {% show_quote post.quote post.source request %}
+                                        {% elif post.type == 'link' %}
+                                            {% show_link post.link request %}
+                                        {% elif post.type == 'chat' %}
+                                            {% show_chat post.chat request %}
+                                        {% elif post.type == 'audio' %}
+                                            {% show_audio post.audiofile request %}
+                                        {% elif post.type == 'video' %}
+                                            {% show_video post.videofile request %}
+                                        {% endif %}
+                                        <hr style="width:100%;border-top: 15px solid transparent;margin-top: 0px;
+                                        margin-bottom: 0px;">
+                                </div>
+                            </div>
+                        {% endfor %}
+
+                    </div>
+
+                    <!-- Recommended blogs, etc. -->
+                    <div class="col-4">
+                    </div>
+                </div>
+            </div>
+
+        {% else %}
+            {% block content %}
+            <main class="wrapper">
+                <section class="section parallax bg1">
+
+	                <!-- Top-left t logo -->
+	                <div>
+	                    <a href="/"><img id="t-logo" src="{% static 'tumblr/images/t_logo.png' %}"/></a>
+	                </div>
+
+	                <!-- Main form in the middle of the page -->
+	                <div id="main" class="container" style="position: relative; top: 250px;">
+	                    <img id="logo" src="{% static 'tumblr/images/tumblr image.png' %}"/>
+	                    <p>Come for what you love.</p>
+	                    <p>Stay for what you discover.</p>
+	                    <a href="/register" class="button-block btn btn-lg btn-primary btn-block btn-link" style="color: white;">Get Started</a>
+	                    <a href="/login-email" class="button-block btn btn-lg btn-block btn-link" style="background-color: white; color: black;">Log In</a>
+
+	                </div>
+            </section>
+
+				<section class="section parallax bg2" style="background-color: #00d011;">
+	                <div id="main" class="container" style="position: relative; top: 50px;">
+	                	<img id="logo" style="width: 500px" src="{% static 'tumblr/images/section_2_centralimage.png' %}"/>
+	                	<div style="width: 600px;position: relative;display: block; margin-left: auto; margin-right: auto;">
+		                	<h1 class="homeh1">Dumblr es tan fácil de utilizar que es difícil explicarlo.</h1>
+		                	<p style="text-align: center;">Hemos conseguido que crear un blog y llenarlo de contenidos sea insultantemente sencillo. Historias, fotos, GIFs, cosas del fandom, enlaces, ideas ocurrentes, humor absurdo (e inteligente), canciones de Spotify, mp3s, vídeos, novedades sobre moda, arte en estado puro, pensamientos profundos... Todo tiene cabida en los 480 millones de blogs que forman Dumblr.</p>
+	                	</div>
+
+	                </div>
+				</section>
+
+                <section class="section parallax bg2" style="background-color: #7c5cff;">
+                    <div id="main" class="container" style="position: relative; top: 50px;">
+                        <div style="width: 600px;position: relative;display: block;">
+                            <h1 class="homeh1" style="text-align: left;">Dumblr no es nada sin sus blogs.</h1>
+                            <p style="text-align: left;">Resulta que, cuando consigues que crear contenidos interesantes sea fácil, la gente lo hace. Todos esos blogs que te han pasado tus amigos alguna vez, esos que te hacen reír y maravillarte, están en Dumblr. Te ayudaremos a encontrarlos y seguirlos, y se lo pondremos fácil a otros usuarios para que hagan lo propio con el tuyo.</p>
+                        </div>
+                        <img id="logo" style="width: 100%; position: absolute; bottom: 0;" src="{% static 'tumblr/images/section_3_centralimage.png' %}"/>
+                    </div>
+                </section>
+
+                <section class="section parallax bg2" style="background-color: #001935;">
+                    <div id="main" class="container" style="position: relative; top: 50px;">
+                        <img id="logo" style="height: 80%; width: auto; float: left;" src="{% static 'tumblr/images/section_4_centralimage.png' %}"/>
+                        <div>
+                            <h1 class="homeh1" style="text-align: left;">Ya sabes cómo funciona.</h1>
+                            <p style="text-align: left;">Cuando sigues un blog, todas sus publicaciones aparecen en tu Escritorio, como es de esperar. Si ves algo interesante, anímate a rebloguearlo. También puedes añadir un comentario y darle tu toque personal: otros usuarios harán lo mismo con tus publicaciones. ¡Así es como se conoce gente por aquí!</p>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="section parallax bg2" style="background-color: #ff8a00;">
+                    <div id="main" class="container" style="position: relative; top: 50px;">
+                        <img id="logo" style="width: auto;" src="{% static 'tumblr/images/section_5_centralimage.png' %}"/>
+                        <div style="width: 600px; position: relative; margin-left: auto; margin-right: auto;">
+                            <h1 class="homeh1">En serio, puedes compartir lo que quieras.</h1>
+                            <p style="text-align: center;">Hay siete tipos de publicaciones. Empieza por ahí: tu cerebro se encargará del resto. Todo esto es tuyo, así que úsalo como te plazca.</p>
+                        </div>
+                    </div>
+                </section>
+
+            </main>
+
+            {% endblock %}
+        {% endif %}
+
+
+    </body>
+</html>
