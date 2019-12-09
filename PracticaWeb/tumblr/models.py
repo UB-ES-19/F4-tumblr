@@ -71,6 +71,8 @@ class Video(models.Model):
         return str(self.videofile)
 
 class Follow(models.Model):
-    created = models.DateTimeField(auto_now_add=True, editable=False)
-    creator = models.ForeignKey(User, related_name="friendship_creator_set")
-    following = models.ForeignKey(User, related_name="friend_set")
+    creator = models.CharField(max_length=100)
+    following = models.CharField(max_length=100)
+
+    class Meta:
+        unique_together = (("creator", "following"),)
