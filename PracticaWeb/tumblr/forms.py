@@ -25,10 +25,10 @@ class AudioForm(forms.ModelForm):
         fields= ["audiofile"]
 
 class ChatForm(forms.ModelForm):
-    # Template from video form, to change
+    # Mirar al pull request
     class Meta:
         model= Chat
-        fields= ["name", "videofile"]
+        fields= ["titleChat", "chatext"]
 
 class ImageForm(forms.ModelForm):
     imagefile = forms.FileField(label='', widget=forms.FileInput(attrs={'style': 'opacity: 0; height:270px; width: 100%'}))
@@ -40,19 +40,19 @@ class LinkForm(forms.ModelForm):
     # Template from video form, to change
     class Meta:
         model= Link
-        fields= ["name", "videofile"]
+        fields= ["linktext"]
 
 class QuoteForm(forms.ModelForm):
-    # Template from video form, to change
+    # Mirar al pull request
     class Meta:
         model= Quote
         fields= [ "quote", "source"]
 
 class TextForm(forms.ModelForm):
-    # Template from video form, to change
+    # Mirar al pull request
     class Meta:
         model= Text
-        fields= ["name", "videofile"]
+        fields= ["titleText", "textext"]
 
 class VideoForm(forms.ModelForm):
     videofile = forms.FileField(label='', widget=forms.FileInput(attrs={'style': 'opacity: 0; height:270px; width: 100%'}))

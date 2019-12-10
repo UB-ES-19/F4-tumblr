@@ -113,7 +113,19 @@ def audio_upload(request):
     return index(request)
 
 def chat_upload(request):
-    pass
+    if request.method == "POST":
+        chat_form = ChatForm(request.POST)
+        if chat_form.is_valid():
+            post = chat_form.save(commit=False)
+            post.user = request.user
+            post.save()
+
+        if "origin" in request.POST:
+            origin = request.POST.get("origin")
+            origin = origin if origin != "" else "/"
+            return redirect(origin)
+    context = {'chat_form': chat_form}
+    return index(request)
 
 def image_upload(request):
     image_form = ImageForm(request.POST or None, request.FILES or None)
@@ -137,7 +149,20 @@ def image_upload(request):
     return index(request)
 
 def link_upload(request):
-    pass
+    if request.method == "POST":
+        # link_form = LinkForm(request.POST or None, request.FILES or None)
+        link_form = LinkForm(request.POST)
+        if link_form.is_valid():
+            post = link_form.save(commit=False)
+            post.user = request.user
+            post.save()
+
+        if "origin" in request.POST:
+            origin = request.POST.get("origin")
+            origin = origin if origin != "" else "/"
+            return redirect(origin)
+    context = {'link_form': link_form}
+    return index(request)
 
 def quote_upload(request):
     if request.method == "POST":
@@ -155,7 +180,19 @@ def quote_upload(request):
     return index(request)
 
 def text_upload(request):
-    pass
+    if request.method == "POST":
+        text_form = TextForm(request.POST)
+        if text_form.is_valid():
+            post = text_form.save(commit=False)
+            post.user = request.user
+            post.save()
+
+        if "origin" in request.POST:
+            origin = request.POST.get("origin")
+            origin = origin if origin != "" else "/"
+            return redirect(origin)
+    context = {'text_form': text_form}
+    return index(request)
 
 def video_upload(request):
     video_form = VideoForm(request.POST or None, request.FILES or None)
