@@ -6,5 +6,5 @@ from django import template
 register = template.Library()
 
 @register.inclusion_tag('show/show_image.html')
-def show_image(image_file, request):
-    return {'image_file': image_file, 'request':request}
+def show_image(image_file, user, request):
+    return {'image_file': image_file, 'user': user, 'request':request}
