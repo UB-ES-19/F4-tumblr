@@ -71,8 +71,6 @@ class Video(models.Model):
         return str(self.videofile)
 
 class Follow(models.Model):
+    id = models.AutoField(primary_key=True)
     creator = models.CharField(max_length=100)
     following = models.CharField(max_length=100)
-
-    class Meta:
-        unique_together = (("creator", "following"),)

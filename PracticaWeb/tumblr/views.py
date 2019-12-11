@@ -33,24 +33,28 @@ def index(request, user_found=None):
     return render(request, 'templates/index.html', context)
 
 def searched_profile(request, username=None):
-    audio_found = Audio.objects.filter(user=username)
-    chat_found = Chat.objects.filter(user=username)
-    image_found = Image.objects.filter(user=username)
-    link_found = Link.objects.filter(user=username)
-    quote_found = Quote.objects.filter(user=username)
-    text_found = Text.objects.filter(user=username)
-    video_found = Video.objects.filter(user=username)
-    posts = sorted(chain(audio_found,
-                         chat_found,
-                         image_found,
-                         link_found,
-                         quote_found,
-                         text_found,
-                         video_found), key=attrgetter('timestamp'), reverse=True)
-    context = {'posts': posts,
-               'searched_username': username}
+    if request.user.username == username:
+        return profile(request)
+    else:
+        audio_found = Audio.objects.filter(user=username)
+        chat_found = Chat.objects.filter(user=username)
+        image_found = Image.objects.filter(user=username)
+        link_found = Link.objects.filter(user=username)
+        quote_found = Quote.objects.filter(user=username)
+        text_found = Text.objects.filter(user=username)
+        video_found = Video.objects.filter(user=username)
+        posts = sorted(chain(audio_found,
+                             chat_found,
+                             image_found,
+                             link_found,
+                             quote_found,
+                             text_found,
+                             video_found), key=attrgetter('timestamp'), reverse=True)
+        context = {'posts': posts,
+                   'searched_username': username,
+                   'already_followed': already_following(request, username)}
 
-    return render(request, 'templates/searched_profile.html', context)
+        return render(request, 'templates/searched_profile.html', context)
 
 def profile(request):
     audio_form = AudioForm(request.POST or None, request.FILES or None)
@@ -214,7 +218,6 @@ def check_email(request):
 
 def list_following(request):
     connections = Follow.objects.filter(creator=request.user).values('following')
-    print(connections)
     return connections
 
 def list_users(request):
@@ -226,9 +229,23 @@ def profile_search(request, user_found=None):
     context = {'user_found': user_found}
     return render(request, 'templates/profile_search.html', context)
 
+def already_following(request, username):
+    already = False
+    followed = list_following(request)
+    for i in followed:
+        if username in i['following']:
+            already = True
+    return already
 
 def add_followed(request):
     username = request.GET.get('followed', None)
     new_follow = Follow(creator=request.user.username, following=username)
     new_follow.save()
+    return searched_profile(request, username)
+
+
+def remove_followed(request):
+    username = request.GET.get('unfollowed', None)
+    object = Follow.objects.filter(creator=request.user.username, following=username)
+    object.delete()
     return searched_profile(request, username)
