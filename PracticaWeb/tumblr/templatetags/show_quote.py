@@ -6,5 +6,5 @@ from django import template
 register = template.Library()
 
 @register.inclusion_tag('show/show_quote.html')
-def show_quote(quote, source, request):
-    return {'quote': quote, 'source': source, 'request':request}
+def show_quote(quote, source, user, request):
+    return {'quote': quote, 'source': source, 'user': user, 'request':request}

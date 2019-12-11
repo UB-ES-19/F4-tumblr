@@ -120,19 +120,19 @@
                                 </div>
                                 <div class="col-11" style="padding-right:10px;">
                                         {% if post.type == 'text' %}
-                                            {% show_text post.title post.text request %}
+                                            {% show_text post.title post.text post.user request %}
                                         {% elif post.type == 'image' %}
-                                            {% show_image post request %}
+                                            {% show_image post.imagefile post.user request %}
                                         {% elif post.type == 'quote' %}
-                                            {% show_quote post.quote post.source request %}
+                                            {% show_quote post.quote post.source post.user request %}
                                         {% elif post.type == 'link' %}
-                                            {% show_link post.link request %}
+                                            {% show_link post.link post.user request %}
                                         {% elif post.type == 'chat' %}
-                                            {% show_chat post.chat request %}
+                                            {% show_chat post.chat post.user request %}
                                         {% elif post.type == 'audio' %}
-                                            {% show_audio post.audiofile request %}
+                                            {% show_audio post.audiofile post.user request %}
                                         {% elif post.type == 'video' %}
-                                            {% show_video post.videofile request %}
+                                            {% show_video post.videofile post.user request %}
                                         {% endif %}
                                         <hr style="width:100%;border-top: 15px solid transparent;margin-top: 0px;
                                         margin-bottom: 0px;">

@@ -6,5 +6,5 @@ from django import template
 register = template.Library()
 
 @register.inclusion_tag('show/show_text.html')
-def show_text(title, text, request):
-    return {'title': title, 'text': text, 'request':request}
+def show_text(title, text, user, request):
+    return {'title': title, 'text': text, 'user': user, 'request':request}
