@@ -6,5 +6,5 @@ from django import template
 register = template.Library()
 
 @register.inclusion_tag('show/show_video.html')
-def show_video(video_file, user, request):
-    return {'video_file': video_file, 'user': user, 'request':request}
+def show_video(video_file, request):
+    return {'video_file': video_file, 'request':request}

@@ -6,5 +6,5 @@ from django import template
 register = template.Library()
 
 @register.inclusion_tag('show/show_audio.html')
-def show_audio(audio_file, user, request):
-    return {'audio_file': audio_file, 'user': user, 'request':request}
+def show_audio(audio_file, request):
+    return {'audio_file': audio_file, 'request':request}

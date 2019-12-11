@@ -43,7 +43,6 @@ def searched_profile(request, username=None):
         quote_found = Quote.objects.filter(user=username)
         text_found = Text.objects.filter(user=username)
         video_found = Video.objects.filter(user=username)
-        print(image_found)
         posts = sorted(chain(audio_found,
                              chat_found,
                              image_found,
