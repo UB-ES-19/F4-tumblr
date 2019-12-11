@@ -6,5 +6,5 @@ from django import template
 register = template.Library()
 
 @register.inclusion_tag('show/show_link.html')
-def show_link(link, request):
-    return {'link': link, 'request':request}
+def show_link(link, user, request):
+    return {'link': link, 'user': user, 'request':request}

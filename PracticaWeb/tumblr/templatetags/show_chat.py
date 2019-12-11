@@ -6,5 +6,5 @@ from django import template
 register = template.Library()
 
 @register.inclusion_tag('show/show_chat.html')
-def show_chat(chat, request):
-    return {'chat': chat, 'request':request}
+def show_chat(chat, user, request):
+    return {'chat': chat, 'user': user, 'request':request}
