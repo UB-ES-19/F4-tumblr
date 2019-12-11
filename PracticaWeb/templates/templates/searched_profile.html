@@ -47,30 +47,24 @@
 
         <!-- <a href="{% url 'logout' %}" class="btn btn-lg btn-primary btn-block btn-link" style="color: white;">Sign out</a> -->
 
-         <nav class="navbar fixed-top navbar-light bg-light">
-                <div style="overflow:hidden">
-                    <a style="float:left;padding-left:5px" class="navbar-brand" href="/"><img width="20px" src="{% static 'tumblr/images/t_logo.png' %}"></a>
-                    <form style="float:left;padding-top:5px" type="GET" class="form-inline my-2 my-lg-0" action="{% url 'search_user'%}">
-                        <input id="search_box" class="form-control mr-sm-2" style="width:450px;color: #000;background:#425166;border-color: transparent;" type="search" placeholder="&#128269; Buscar en Tumblr" aria-label="Search" name="search">
-                        <button style="visibility:hidden;" class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-                    </form>
-                </div>
-                <div class="navbar-buttons" class="ml-auto" style="overflow:hidden">
-                    <a href="{% url 'profile' %}" style="float:left">&#xEAA6;</a>
-                    <a href="{% url 'logout' %}" style="float:left">&#x2717;</a>
+
+            <nav class="navbar fixed-top navbar-light bg-light">
+                <a class="navbar-brand" href="/"><img width="20px" src="{% static 'tumblr/images/t_logo.png' %}"></a>
+                <div class="navbar-buttons" class="ml-auto">
+                    <a href="{% url 'profile' %}">&#xEAA6;</a>
+                    <a href="{% url 'logout' %}">&#x2717;</a>
                     {% if not already_followed %}
-                        <form type="GET" class="form-inline my-2 my-lg-0 follow-button" action="{% url 'add_followed'%}" style="float:left;">
+                        <form type="GET" class="form-inline my-2 my-lg-0" action="{% url 'add_followed'%}">
                             <input id="followed" name="followed" type="hidden" value="{{searched_username}}">
-                            <button class="btn my-2 my-sm-0 follow-button" type="submit">Follow</button>
+                            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Follow</button>
                         </form>
                     {% else %}
                         <form type="GET" class="form-inline my-2 my-lg-0" action="{% url 'remove_followed'%}">
                             <input id="unfollowed" name="unfollowed" type="hidden" value="{{searched_username}}">
-                            <button class="btn my-2 my-sm-0 follow-button"  type="submit">Unfollow</button>
+                            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Unfollow</button>
                         </form>
                     {% endif %}
                 </div>
-
             </nav>
 
 

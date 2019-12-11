@@ -53,8 +53,8 @@ def searched_profile(request, username=None):
         context = {'posts': posts,
                    'searched_username': username,
                    'already_followed': already_following(request, username)}
-        return render(request, 'templates/searched_profile.html', context)
 
+        return render(request, 'templates/searched_profile.html', context)
 
 def profile(request):
     audio_form = AudioForm(request.POST or None, request.FILES or None)
@@ -218,10 +218,7 @@ def check_email(request):
 
 def list_following(request):
     connections = Follow.objects.filter(creator=request.user).values('following')
-    usernames = []
-    for i in connections:
-        usernames.append(i['following'])
-    return usernames
+    return connections
 
 def list_users(request):
     name = request.GET.get('search', None)
@@ -233,8 +230,12 @@ def profile_search(request, user_found=None):
     return render(request, 'templates/profile_search.html', context)
 
 def already_following(request, username):
+    already = False
     followed = list_following(request)
-    return username in followed
+    for i in followed:
+        if username in i['following']:
+            already = True
+    return already
 
 def add_followed(request):
     username = request.GET.get('followed', None)
