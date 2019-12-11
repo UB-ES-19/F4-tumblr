@@ -15,6 +15,7 @@ urlpatterns = [
     url(r'^video_upload$', views.video_upload, name='video_upload'),
     url(r'^search_user', views.list_users, name='search_user'),
     url(r'^add_followed', views.add_followed, name='add_followed'),
+    url(r'^remove_followed', views.remove_followed, name='remove_followed'),
     url(r'^profile/(?P<username>.*)$', views.searched_profile, name='searched_profile'),
     url(r'^profile$', views.profile, name='profile'),
 ]
