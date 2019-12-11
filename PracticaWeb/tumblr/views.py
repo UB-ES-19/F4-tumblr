@@ -13,7 +13,6 @@ from operator import attrgetter
 
 
 def index(request, user_found=None):
-    list_following(request)
     audio_form = AudioForm(request.POST or None, request.FILES or None)
     chat_form = ChatForm(request.POST or None, request.FILES or None)
     image_form = ImageForm(request.POST or None, request.FILES or None)
@@ -32,25 +31,6 @@ def index(request, user_found=None):
 
     return render(request, 'templates/index.html', context)
 
-def searched_profile(request, username=None):
-    audio_found = Audio.objects.filter(user=username)
-    chat_found = Chat.objects.filter(user=username)
-    image_found = Image.objects.filter(user=username)
-    link_found = Link.objects.filter(user=username)
-    quote_found = Quote.objects.filter(user=username)
-    text_found = Text.objects.filter(user=username)
-    video_found = Video.objects.filter(user=username)
-    posts = sorted(chain(audio_found,
-                         chat_found,
-                         image_found,
-                         link_found,
-                         quote_found,
-                         text_found,
-                         video_found), key=attrgetter('timestamp'), reverse=True)
-    context = {'posts': posts,
-               'searched_username': username}
-
-    return render(request, 'templates/searched_profile.html', context)
 
 def profile(request):
     audio_form = AudioForm(request.POST or None, request.FILES or None)
@@ -213,22 +193,14 @@ def check_email(request):
         return render(request, "registration/login-email.html")
 
 def list_following(request):
-    connections = Follow.objects.filter(creator=request.user).values('following')
-    print(connections)
+    connections = Follow.objects.filter(creator=request.user)
+    for con in connections:
+        print(con)
     return connections
 
 def list_users(request):
     name = request.GET.get('search', None)
-    user_list = User.objects.filter(username__icontains=name)
-    return profile_search(request, user_list)
-
-def profile_search(request, user_found=None):
-    context = {'user_found': user_found}
-    return render(request, 'templates/profile_search.html', context)
-
-
-def add_followed(request):
-    username = request.GET.get('followed', None)
-    new_follow = Follow(creator=request.user.username, following=username)
-    new_follow.save()
-    return searched_profile(request, username)
+    # Podem intentar listar per similaritat aqui, i no retornar simplement un usuari
+    user_list = User.objects.filter(username=name)
+    print(user_list)
+    return index(request, user_list)
