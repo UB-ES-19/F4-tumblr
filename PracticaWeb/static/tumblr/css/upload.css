@@ -93,72 +93,10 @@
     color: red;
 }
 
-#link, #text-title, #text, #chat-title, #chat, #quote, #source {
+#link, #text-title, #text, #chat-title, #chat {
     border: none;
 }
-#link:focus, #text-title:focus, #text:focus, #chat-title:focus, #chat:focus, #quote, #source {
+#link:focus, #text-title:focus, #text:focus, #chat-title:focus, #chat:focus {
     outline: none;
     box-shadow: none;
-}
-
-/* quote */
-
-#quoteWrap {
-    white-space: nowrap;
-}
-
-#quoteWrap::before {
-    content: "“";
-    display: inline;
-    color: black;
-    font-family: 'Helvetica Neue,HelveticaNeue,Helvetica,Arial,sans-serif';
-    font-size: 50px;
-}
-
-#quoteWrap::after {
-    content: "”";
-    display: inline;
-    color: black;
-    font-family: 'Helvetica Neue,HelveticaNeue,Helvetica,Arial,sans-serif';
-    font-size: 50px;
-}
-
-#quote {
-    width: 90%;
-    display: inline-block;
-    white-space: nowrap;
-    color: black;
-    font-family: 'Helvetica Neue,HelveticaNeue,Helvetica,Arial,sans-serif';
-    font-size: 50px;
-}
-
-/* source */
-
-#sourceWrap {
-    white-space: nowrap;
-}
-
-#sourceWrap::before {
-    content: "— ";
-    display: inline;
-    color: black;
-    font-family: 'Helvetica Neue,HelveticaNeue,Helvetica,Arial,sans-serif';
-}
-
-#source {
-    width: 90%;
-    display: inline-block;
-    white-space: nowrap;
-    color: black;
-    font-family: 'Helvetica Neue,HelveticaNeue,Helvetica,Arial,sans-serif';
-}
-
-#source {
-    color: black;
-    font-family: 'Helvetica Neue,HelveticaNeue,Helvetica,Arial,sans-serif';
-}
-
-#close_btn_quote {
-    position: absolute;
-    left: 15px;
 }
