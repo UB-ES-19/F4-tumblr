@@ -53,17 +53,10 @@
                 <div class="navbar-buttons" class="ml-auto">
                     <a href="{% url 'profile' %}">&#xEAA6;</a>
                     <a href="{% url 'logout' %}">&#x2717;</a>
-                    {% if not already_followed %}
-                        <form type="GET" class="form-inline my-2 my-lg-0" action="{% url 'add_followed'%}">
-                            <input id="followed" name="followed" type="hidden" value="{{searched_username}}">
-                            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Follow</button>
-                        </form>
-                    {% else %}
-                        <form type="GET" class="form-inline my-2 my-lg-0" action="{% url 'remove_followed'%}">
-                            <input id="unfollowed" name="unfollowed" type="hidden" value="{{searched_username}}">
-                            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Unfollow</button>
-                        </form>
-                    {% endif %}
+                    <form type="GET" class="form-inline my-2 my-lg-0" action="{% url 'add_followed'%}">
+                        <input id="followed" name="followed" type="text" value="{{searched_username}}">
+                        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Follow</button>
+                    </form>
                 </div>
             </nav>
 
