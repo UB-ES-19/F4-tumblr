@@ -8,25 +8,25 @@
 
 <!-- Modal -->
 <div class="upload-modal" id="textModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Text Uploader</h5>
-      </div>
-    <div class="modal-body">
-        <form enctype="multipart/form-data" method="POST" action="{% url 'text_upload'%}">
-            {% csrf_token %}
-            <div class="form-group">
-                <input style="color:black; font-size: xx-large" type="text" class="form-control" name="text-title" id="text-title" placeholder='Title'>
-                <textarea style="color:black; height: 150px;" class="form-control" name="text" id="text" placeholder='Your text here'></textarea>
-                <input type="hidden" name="origin" value="{{ request.path|urlencode }}">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Text Uploader</h5>
             </div>
-        </form>
+            <div class="modal-body">
+                <form enctype="multipart/form-data" method="POST" action="{% url 'text_upload'%}">
+                    {% csrf_token %}
+                    <div class="form-group">
+                        <input style="color:black; font-size: xx-large" type="text" class="form-control" name="title" id="text-title" placeholder='Title'>
+                        <textarea style="color:black; height: 150px;" class="form-control" name="text" id="text" placeholder='Your text here'></textarea>
+                        <input type="hidden" name="origin" value="{{ request.path|urlencode }}">
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" id="close_btn_text" onclick="hideUploads();">Close</button>
+                        <input type="submit" class="btn btn-primary" value="Upload"/>
+                    </div>
+                </form>
+            </div>
+        </div>
     </div>
-        <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" onclick="hideUploads();">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
-      </div>
-    </div>
-  </div>
 </div>

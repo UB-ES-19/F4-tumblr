@@ -15,8 +15,8 @@ class Chat(models.Model): #mirar pull req
     timestamp = models.DateTimeField(auto_now_add=True)
     type = models.CharField(max_length=50, default='chat', editable=False)
     user = models.CharField(max_length=500)
-    chat = models.TextField(max_length=200, default='')
-    source = models.TextField(max_length=200, default='')
+    title = models.TextField(max_length=200, default='')
+    chat = models.TextField(default='')
 
 class Image(models.Model):
     user=models.CharField(max_length=500)
@@ -33,7 +33,6 @@ class Link(models.Model):
     type = models.CharField(max_length=50, default='link', editable=False)
     user = models.CharField(max_length=500)
     link = models.TextField(max_length=200, default='')
-    source = models.TextField(max_length=200, default='')
 
 class Quote(models.Model):
     id = models.AutoField(primary_key=True)
@@ -48,8 +47,9 @@ class Text(models.Model):
     timestamp = models.DateTimeField(auto_now_add=True)
     type = models.CharField(max_length=50, default='text', editable=False)
     user = models.CharField(max_length=500)
-    text = models.TextField(max_length=200, default='')
-    source = models.TextField(max_length=200, default='')
+    title = models.TextField(max_length=200, default='')
+    text = models.TextField(default='')
+
 
 class Video(models.Model):
     # Template of video file, to change

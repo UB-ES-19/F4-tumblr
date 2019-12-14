@@ -28,7 +28,7 @@ class ChatForm(forms.ModelForm):
     # Mirar al pull request
     class Meta:
         model= Chat
-        fields= ["titleChat", "chatext"]
+        fields= ["title", "chat"]
 
 class ImageForm(forms.ModelForm):
     imagefile = forms.FileField(label='', widget=forms.FileInput(attrs={'style': 'opacity: 0; height:270px; width: 100%'}))
@@ -40,7 +40,7 @@ class LinkForm(forms.ModelForm):
     # Template from video form, to change
     class Meta:
         model= Link
-        fields= ["linktext"]
+        fields= ["link"]
 
 class QuoteForm(forms.ModelForm):
     # Mirar al pull request
@@ -52,7 +52,7 @@ class TextForm(forms.ModelForm):
     # Mirar al pull request
     class Meta:
         model= Text
-        fields= ["titleText", "textext"]
+        fields= ["title", "text"]
 
 class VideoForm(forms.ModelForm):
     videofile = forms.FileField(label='', widget=forms.FileInput(attrs={'style': 'opacity: 0; height:270px; width: 100%'}))

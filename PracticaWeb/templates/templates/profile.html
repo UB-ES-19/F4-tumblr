@@ -128,7 +128,7 @@
                                         {% elif post.type == 'link' %}
                                             {% show_link post.link post.user request %}
                                         {% elif post.type == 'chat' %}
-                                            {% show_chat post.chat post.user request %}
+                                            {% show_chat post.title post.chat post.user request %}
                                         {% elif post.type == 'audio' %}
                                             {% show_audio post.audiofile post.user request %}
                                         {% elif post.type == 'video' %}
