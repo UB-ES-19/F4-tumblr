@@ -13,7 +13,8 @@ from operator import attrgetter
 
 
 def index(request, user_found=None):
-    list_following(request)
+
+    # Upload forms
     audio_form = AudioForm(request.POST or None, request.FILES or None)
     chat_form = ChatForm(request.POST or None, request.FILES or None)
     image_form = ImageForm(request.POST or None, request.FILES or None)
@@ -21,14 +22,38 @@ def index(request, user_found=None):
     quote_form = QuoteForm(request.POST or None, request.FILES or None)
     text_form = TextForm(request.POST or None, request.FILES or None)
     video_form = VideoForm(request.POST or None, request.FILES or None)
-    context = {'audio_form': audio_form,
-               'chat_form': chat_form,
-               'image_form': image_form,
-               'link_form': link_form,
-               'quote_form': quote_form,
-               'text_form': text_form,
-               'video_form': video_form,
-               'user_found': user_found}
+
+    # Queries to display posts from people the user follows
+    following = list_following(request) + [request.user.username]
+    audio_found = Audio.objects.filter(user__in=following)
+    chat_found = Chat.objects.filter(user__in=following)
+    image_found = Image.objects.filter(user__in=following)
+    link_found = Link.objects.filter(user__in=following)
+    quote_found = Quote.objects.filter(user__in=following)
+    text_found = Text.objects.filter(user__in=following)
+    video_found = Video.objects.filter(user__in=following)
+
+    posts = sorted(chain(
+        audio_found,
+        chat_found,
+        image_found,
+        link_found,
+        quote_found,
+        text_found,
+        video_found
+    ), key=attrgetter('timestamp'), reverse=True)
+
+    context = {
+        'audio_form': audio_form,
+        'chat_form': chat_form,
+        'image_form': image_form,
+        'link_form': link_form,
+        'quote_form': quote_form,
+        'text_form': text_form,
+        'video_form': video_form,
+        'user_found': user_found,
+        'posts': posts,
+    }
 
     return render(request, 'templates/index.html', context)
 
