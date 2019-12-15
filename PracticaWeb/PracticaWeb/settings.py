@@ -44,6 +44,8 @@ INSTALLED_APPS = [
     'tumblr.apps.TumblrConfig',
 ]
 
+AUTH_USER_MODEL = 'tumblr.UserProfile'
+
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',

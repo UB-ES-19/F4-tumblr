@@ -1,7 +1,6 @@
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
-from django.contrib.auth.models import User
-from .models import Audio, Chat, Image, Link, Quote, Text, Video
+from .models import Audio, Chat, Image, Link, Quote, Text, Video, UserProfile
 
 
 class SignUpForm(UserCreationForm):
@@ -12,10 +11,8 @@ class SignUpForm(UserCreationForm):
     username = forms.CharField(label='', widget=forms.TextInput(attrs={'class': "form-control", 'placeholder':"username" }))
 
     class Meta:
-        model = User
+        model = UserProfile
         fields = ('email', 'password1', 'password2', 'username')
-
-
 
 
 class AudioForm(forms.ModelForm):
