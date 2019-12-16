@@ -17,6 +17,7 @@
         <!-- Bootstrap -->
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
         <!-- CSS -->
+
         <link rel="stylesheet" href="{% static 'tumblr/css/fonts.css' %}">
         <link rel="stylesheet" href="{% static 'tumblr/css/login.css' %}">
         <link rel="stylesheet" href="{% static 'tumblr/css/index.css' %}">
@@ -66,15 +67,30 @@
         {% endif %}
 
         <div id="dashboard-content" class="container">
+        <div class="row text-center">
                     {%if user_found%}
                         {%for i in user_found%}
-                            <div class="row">
-                            <a href="{% url 'searched_profile' i.username %}" style="color:white">{{i.username}}</a><br>
+                            <div class="col-lg-3 col-md-3 mb-3">
+                                <div class="card h-100">
+                                    {% if i.picture.url != None%}
+                                        <img class="card-img-top" src="{{ i.picture.url }}" alt="">
+                                    {% else %}
+                                        <img width="100%" src="{% static 'tumblr/images/profile_image_default.png' %}">
+                                    {% endif %}
+                                    <div class="card-body">
+
+                                    </div>
+                                    <div class="card-footer">
+                                        <a href="{% url 'searched_profile' i.username %}" >{{i.username}}</a>
+                                    </div>
+                                </div>
                             </div>
+
                         {%endfor%}
                     {%else%}
                         <h3 style="color:white">User not found!</h3>
                     {%endif%}
+        </div>
         </div>
     </body>
 </html>

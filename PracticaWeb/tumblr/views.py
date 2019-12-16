@@ -1,13 +1,11 @@
-from django.contrib.auth.models import User
 from django.http import HttpResponse
-from django.contrib.auth.forms import UserCreationForm
 from django.http import HttpResponseRedirect
 from django.shortcuts import render, redirect
 from django.urls import reverse
 from django.contrib.auth import authenticate, login
 from tumblr.forms import SignUpForm
 from .models import Audio, Chat, Image, Link, Quote, Text, Video, Follow
-from .forms import AudioForm, ChatForm, ImageForm, LinkForm, QuoteForm, TextForm, VideoForm
+from .forms import AudioForm, ChatForm, ImageForm, LinkForm, QuoteForm, TextForm, VideoForm, UserProfile
 from itertools import chain
 from operator import attrgetter
 
@@ -247,13 +245,13 @@ def register(request):
         if form.is_valid():
             try:
                 email = form.cleaned_data.get('email')
-                User.objects.get(email=email)
+                UserProfile.objects.get(email=email)
                 form = SignUpForm()
                 return render(request, "registration/register.html", {
                     'form': form,
                     'mail_flag': True
                 })
-            except User.DoesNotExist:
+            except UserProfile.DoesNotExist:
                 form.save()
                 username = form.cleaned_data.get('username')
                 password = form.cleaned_data.get('password1')
@@ -272,9 +270,9 @@ def check_email(request):
     if request.method == 'POST':
         search_email = request.POST.get('email', None)
         try:
-            user = User.objects.get(email=search_email)
+            user = UserProfile.objects.get(email=search_email)
             return HttpResponseRedirect(reverse("login") + "?username=" + user.username + "&email=" + search_email)
-        except User.DoesNotExist:
+        except UserProfile.DoesNotExist:
             return HttpResponse("This email doesn't have a Dumblr account.")
     else:
         return render(request, "registration/login-email.html")
@@ -288,7 +286,7 @@ def list_following(request):
 
 def list_users(request):
     name = request.GET.get('search', None)
-    user_list = User.objects.filter(username__icontains=name)
+    user_list = UserProfile.objects.filter(username__icontains=name)
     return profile_search(request, user_list)
 
 def profile_search(request, user_found=None):

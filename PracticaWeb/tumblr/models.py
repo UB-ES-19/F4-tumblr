@@ -1,6 +1,12 @@
 # Create your models here.
 from django.db import models
-from django.contrib.auth.models import User
+from django.contrib.auth.models import AbstractUser
+
+class UserProfile(AbstractUser):
+    picture = models.FileField(upload_to='profiles/', null=True, blank=True, verbose_name="profile picture")
+
+    class Meta(AbstractUser.Meta):
+        swappable = 'AUTH_USER_MODEL'
 
 class Audio(models.Model):
     user=models.CharField(max_length=500)
