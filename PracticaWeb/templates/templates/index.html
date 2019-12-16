@@ -58,8 +58,10 @@
                     </form>
                 </div>
                 <div class="navbar-buttons" class="ml-auto">
-                    <a href="{% url 'profile' %}">&#xEAA6;</a>
-                    <a href="{% url 'logout' %}">&#x2717;</a>
+                    <a href="{% url 'profile' %}">
+                        <span class="username">{{ request.user.username }}</span> &#xEAA6;
+                    </a>
+                    <a href="{% url 'logout' %}">╳</a>
                 </div>
 
             </nav>
