@@ -89,8 +89,8 @@
                             <div class="row">
                                 <hr style="width:100%;border-top: 10px solid transparent;">
                                 <div class="col-1" style="padding-left: 0px;padding-right: 0px;">
-                                    {% if post.user.picture.url != None %}
-                                        <img width="100%" src="{{ post.user.picture.url }}">
+                                    {% if post.user_picture.url != None %}
+                                        <img width="100%" src="{{ post.user_picture.url }}">
                                     {% else %}
                                         <img width="100%" src="{% static 'tumblr/images/profile_image_default.png' %}">
                                     {% endif %}

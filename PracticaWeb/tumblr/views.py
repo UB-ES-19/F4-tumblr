@@ -4,7 +4,7 @@ from django.shortcuts import render, redirect
 from django.urls import reverse
 from django.contrib.auth import authenticate, login
 from tumblr.forms import SignUpForm
-from .models import Audio, Chat, Image, Link, Quote, Text, Video, Follow
+from .models import Audio, Chat, Image, Link, Quote, Text, Video, Follow, UserProfile
 from .forms import AudioForm, ChatForm, ImageForm, LinkForm, QuoteForm, TextForm, VideoForm, UserProfile
 from itertools import chain
 from operator import attrgetter
@@ -41,6 +41,8 @@ def index(request, user_found=None):
         video_found
     ), key=attrgetter('timestamp'), reverse=True)
 
+    get_pics(posts)
+
     context = {
         'audio_form': audio_form,
         'chat_form': chat_form,
@@ -54,6 +56,16 @@ def index(request, user_found=None):
     }
 
     return render(request, 'templates/index.html', context)
+
+def get_pics(posts):
+    """gets the profile pircture url of the user who posted each post"""
+    for post in posts:
+        picture = UserProfile.objects.filter(username=post.user)[0].picture
+        try:
+            if picture.url is not None:
+                post.user_picture = picture
+        except:
+            pass
 
 def searched_profile(request, username=None):
     if request.user.username == username:
@@ -74,6 +86,7 @@ def searched_profile(request, username=None):
                              quote_found,
                              text_found,
                              video_found), key=attrgetter('timestamp'), reverse=True)
+        get_pics(posts)
         context = {'posts': posts,
                    'searched_username': username,
                    'already_followed': already_following(request, username)}
